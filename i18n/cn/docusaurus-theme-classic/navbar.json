@@ -1,0 +1,22 @@
+{
+  "title": {
+    "message": "Chialisp",
+    "description": "The title in the navbar"
+  },
+  "item.label.Docs": {
+    "message": "Docs",
+    "description": "Navbar item with label Docs"
+  },
+  "item.label.Training": {
+    "message": "Training",
+    "description": "Navbar item with label Training"
+  },
+  "item.label.Chia.net": {
+    "message": "Chia.net",
+    "description": "Navbar item with label Chia.net"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

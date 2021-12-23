@@ -1,0 +1,26 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.someSidebar.category.Chialisp": {
+    "message": "Chialisp",
+    "description": "The label for category Chialisp in sidebar someSidebar"
+  },
+  "sidebar.someSidebar.category.CLVM": {
+    "message": "CLVM",
+    "description": "The label for category CLVM in sidebar someSidebar"
+  },
+  "sidebar.someSidebar.category.Puzzles": {
+    "message": "Puzzles",
+    "description": "The label for category Puzzles in sidebar someSidebar"
+  },
+  "sidebar.someSidebar.category.Tutorials": {
+    "message": "Tutorials",
+    "description": "The label for category Tutorials in sidebar someSidebar"
+  },
+  "sidebar.someSidebar.category.FAQ": {
+    "message": "FAQ",
+    "description": "The label for category FAQ in sidebar someSidebar"
+  }
+}
