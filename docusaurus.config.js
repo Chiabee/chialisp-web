@@ -7,6 +7,10 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'Chia-Network', // Usually your GitHub org/user name.
   projectName: 'chialisp-web', // Usually your repo name.
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'cn'],
+  },
   themeConfig: {
     prism: {
       darkTheme: require('./src/theme/prism-dark-theme-chialisp'),
