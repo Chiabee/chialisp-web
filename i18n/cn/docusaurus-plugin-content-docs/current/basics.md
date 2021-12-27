@@ -11,6 +11,9 @@ CLVM 是 Chia 网络使用的 ChiaLisp 的编译的最小版本。 Chialisp 编�
 
 本指南将涵盖该语言的基础知识，并作为程序结构的介绍。您应该能够通过运行 [clvm_tools](https://github.com/Chia-Network/clvm_tools) 的版本来跟进。按照自述文件中的说明进行安装。
 
+<details>
+<summary>原文参考</summary>
+
 CLVM is the compiled, minimal version of ChiaLisp that is used by the Chia network.
 Chialisp compiles into CLVM so it's important to understand how it works.
 The full set of operators is documented [here](/docs/ref/clvm).
@@ -18,6 +21,8 @@ The full set of operators is documented [here](/docs/ref/clvm).
 This guide will cover the basics of the language and act as an introduction to the structure of programs.
 You should be able to follow along by running a version of [clvm_tools](https://github.com/Chia-Network/clvm_tools).
 Follow the instructions in the README to install it.
+
+</details>
 
 ## CLVM values
 
