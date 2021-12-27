@@ -1,8 +1,8 @@
 ---
 id: basics
-title: 1 - CLVM Basics
+title: 1 - CLVM 基础知识
 slug: /
-sidebar_label: 1 - CLVM Basics
+sidebar_label: 1 - CLVM 基础知识
 ---
 
 CLVM is the compiled, minimal version of ChiaLisp that is used by the Chia network.
