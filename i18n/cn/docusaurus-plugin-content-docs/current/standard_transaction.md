@@ -5,7 +5,7 @@ title: 6 - 标准交易
 
 > The Standard Transaction
 
-您现在应该精通使用 Chialisp 拼图锁定硬币的多种方法。我们现在拥有了讨论 Chia 网络上标准交易格式所需的所有工具。
+您现在应该精通使用 Chialisp 谜语锁定硬币的多种方法。我们现在拥有了讨论 Chia 网络上标准交易格式所需的所有工具。
 
 在您阅读本节之前，不妨先看看 Bram Cohen 的这篇[博客文章](https://www.chia.net/2021/05/27/Agrgregated-Sigs-Taproot-Graftroot.html)关于为什么标准交易是这样的。
 
