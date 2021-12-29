@@ -1,13 +1,50 @@
 ---
 id: coin_lifecycle
-title: 7 - Lifecycle of a Coin
+title: 7 - 币的生命周期
 ---
+
+> Lifecycle of a Coin
+
+您现在应该了解如何创建 Chialisp 谜语，用一组特定的规则锁定硬币。您可能想知道硬币是如何被锁定的，它存储在哪里，如何以及何时使用，以及谁可以使用它。让我们来看看硬币从创建到销毁所经历的步骤。
+
+<details>
+<summary>原文参考</summary>
 
 You should now understand how to create Chialisp puzzles that lock up coins with a particular set of rules.
 You may be wondering how a coin gets locked up, where it is stored, how and when it gets spent, and who can spend it.
 Let's take a look at the steps a coin goes through from its creation to its destruction.
 
-## The Coin Set Model
+</details>
+
+## 币集合模型
+
+Chia 关于硬币如何存储的模型称为**币集合**模型，它与比特币的 UTXO 模型密切相关。这个想法很简单，每个完整节点都持有一个**硬币记录**数据库：
+
+```python
+class Coin:
+  parent_coin_info: bytes32
+  puzzle_hash: bytes32
+  amount: uint64
+
+class CoinRecord:
+  coin: Coin
+  confirmed_block_index: uint32
+  spent_block_index: uint32
+  spent: boolean
+  coinbase: boolean
+  timestamp: uint64
+```
+
+*请注意，`Coin` 对象是区块链格式的一部分，无法更改，而 `CoinRecord` 对象是完整节点的一部分，可以通过替代实现进行修改*
+
+该数据库是通过从零高度查看区块链并处理所有交易直到它与当前峰值同步来生成的。当全节点处理花费时，它首先确保被花费的硬币存在于它的数据库中，运行并验证产生的 Chialisp 条件，将花费的硬币标记为花费，并添加任何新创建的硬币因此。
+
+随着区块链的增长，这种方法使数据库变得非常轻巧，但仍然允许通过 Chialisp 实现复杂性和智能代币，Chialisp 致力于谜语哈希。这也是与其他一些区块链的一个重要区别，因为 *Chialisp 中的所有状态都存储在硬币中*。没有特殊的方式来存储数据以便人们可以访问它；该功能的大部分来自寻找方法来揭开谜语揭示中的正确信息，并通过承诺可预测的谜语哈希。
+
+<details>
+<summary>原文参考</summary>
+
+- ## The Coin Set Model
 
 Chia's model of how coins are stored is called the **coin set** model and is closely modelled after Bitcoin's UTXO model.
 The idea is simple, every full node holds onto a database of **coin records**:
@@ -35,7 +72,42 @@ This approach makes the database very light as the blockchain grows, but still a
 It is also an important distinction from some other blockchains in that *all state in Chialisp is stored in the coins*.
 There is no special way to store data so that people can access it; the majority of that functionality comes from finding ways to reveal the proper information in puzzle reveals and by committing to predictable puzzle hashes.
 
-## Farming Rewards
+</details>
+
+## 农业奖励
+
+您可能知道，农民在 Chia 创造了全新的价值。每隔 18.75 秒左右，就会出现一个新区块，允许农民凭空创造硬币，两种数量的非常特定的比率：1 比 7（农民与池）。以下是区块链第 10,000 个区块中产生的两个实际农业奖励：
+
+```json
+[
+  {
+    "amount" : 1750000000000,
+    "parent_coin_info" : "0xccd5bb71183532bff220ba46c268991a0000000000000000000000000000270b",
+    "puzzle_hash" : "0x0b42a11b76d276f191026ae1a01c711cc0637e63d8ce0c2f62d6d079cc974920"
+  },
+  {
+    "amount" : 250000000000,
+    "parent_coin_info" : "0x3ff07eb358e8255a65c30a2dce0e5fbb0000000000000000000000000000270b",
+    "puzzle_hash" : "0x0b42a11b76d276f191026ae1a01c711cc0637e63d8ce0c2f62d6d079cc974920"
+  }
+]
+```
+
+_有趣的事实：创世挑战是在 Chia 网络启动时比特币区块的哈希值以及来自 Bram Cohen 的消息：““操作错误导致美联储支付系统崩溃”我们站在巨人的肩膀上，现在让我们 去种地！”_
+
+请注意，两者的 `parent_coin_info` 都有些奇怪。因为它们是凭空创造的，所以这些硬币被分配了一个特殊的价值作为它们的父币：“创世挑战”的一半，一些填充零，以及它们被耕种的区块的索引。
+
+```python
+pool_parent_id = bytes32(genesis_challenge[:16] + block_height.to_bytes(16, "big"))
+farmer_parent_id = bytes32(genesis_challenge[16:] + block_height.to_bytes(16, "big"))
+```
+
+这些信息通常不是很相关，但会被使用。例如，在汇集谜语中，奖励硬币需要在它被认领时发布公告，而另一个谜语需要声明该公告。还需要指出的是，由于创世挑战是父信息的一部分，并且由于主网和每个测试网的创世挑战不同，因此几乎不可能最终得到两个相同的硬币 ID。这在一定程度上是为了防止签名重放攻击：在测试网上签名的硬币将无法在主网上使用相同的签名。
+
+<details>
+<summary>原文参考</summary>
+
+- ## Farming Rewards
 
 As you probably know, farmers create the entirety of new value in Chia.
 Every 18.75 seconds or so, a new block pops into existence that allows for a farmer to create a coin out of thin air, in two amounts of a very specific ratio: 1 to 7 (farmer to pool).
@@ -69,7 +141,41 @@ This information is usually not very relevant, but it is used.
 For example, in the pooling puzzles, the reward coin needs to make an announcement as it's being claimed and another puzzle needs to assert that announcement.
 It's also important to point out that since the genesis challenge is part of the parent info, and since the genesis challenge is different between mainnet and each testnet, it's nearly impossible to end up with two identical coin ids. This is, in part, to prevent signature replay attacks: coins that are signed on testnet won't be able to use the same signature on mainnet.
 
-## Spend Bundles
+</details>
+
+## 花费组合
+
+好的，您已经收到了一些 XCH，并且想要部署您的第一个智能代币。为此，您首先必须创建一个**花费组合**。这有时被通俗地称为“交易”。花费组合是一个简单的结构。它是一个包含两件事的对象：一个硬币支出列表和一个聚合签名。
+
+```python
+class SpendBundle:
+  coin_solutions: List[CoinSpend]
+  aggregated_signature: G2Element
+```
+
+**硬币花费**包含三件事：您尝试花费的硬币（parent_coin_info、amount、puzzle_hash）、揭开的谜语（需要树哈希到谜语哈希）和谜底。
+
+```python
+class CoinSolution:
+  coin: Coin
+  puzzle_reveal: SerializedProgram
+  solution: SerializedProgram
+```
+
+**聚合签名**是一个 BLS 签名，需要是由组合中谜语的条件输出的公钥/消息对的签名。您不能聚合额外的签名，也不能遗漏任何签名。如果没有输出 AGG_SIG_ME 或 AGG_SIG_UNSAFE 条件，则聚合签名必须是一个空签名，即“c”后跟 191 个零。
+
+一旦你构建了一个花费组合，你就可以将它推送到 Chia 完整节点上的 `/push_tx` RPC 端点。但请记住以下几点：
+
+* 除非您种植该区块，否则您无法保证您的支出包是否或何时进入网络。如果两个支出以某种方式相互依赖，则它们必须在同一个花费组合中并绑定签名。
+* 使用短绝对时间锁时，请确保为捆绑包到达网络留出合理的时间。有时，由于高费用压力，低费用交易可能需要一段时间才能进入。如果您的支出依赖于在时间锁定过去之前在区块链上提供硬币，这不是保证，因此请确保留出足够的时间以防万一。
+* 除了聚合签名和公告逻辑之外，从技术上讲，没有什么能将花费组合在一起。如果您进行的支出未声明来自支出中的另一个代币的公告并且不需要签名，则恶意节点或农民可能会将该支出从捆绑中排除。另请注意，未经您的许可，可以将一个花费组合与另一个组合在一起。事实上，区块创建代码在创建生成器时也做了类似的事情，我们很快就会谈到。
+
+请记住，其他节点也在处理这部分数据，最好假设它们将尝试更改其所能更改的所有内容。确保如果以您不喜欢的方式进行任何更改，则整个组合都会失败。
+
+<details>
+<summary>原文参考</summary>
+
+- ## Spend Bundles
 
 Alright, so you've received some XCH and you want to deploy your first smart coin.
 To do that, you're first going to have to create a **spend bundle**.
@@ -111,7 +217,20 @@ In fact, the block creation code does something similar when it creates the gene
 Remember that other nodes are handling this piece of data as well, and it's best to assume that they will try to change everything that they can.
 Make sure that if anything changes in a way you don't like, the whole bundle will fail.
 
-## Fees and the Mempool
+</details>
+
+## 费用和内存池
+
+一旦您创建并推送花费组合，您的节点将对其进行验证，然后开始向其对等方八卦信息。当每个节点收到交易时，它会尝试自行验证它，如果它认为支出是无效。*非常*重要的是要注意，在验证它之前，节点可以运行尝试更改它的软件。这就是为什么以任何更改都会自动使签名无效的方式创建支出包非常重要或者谜语哈希。恶意节点可以将改变的交易推送给其他诚实节点，如果它不是无效的，诚实节点就会接受它。
+
+一旦它验证了花费组合，它就会将相关信息包含到其**内存池**中。内存池是一个节点持有并等待放入块中的交易列表。内存池中的项目按以下顺序排序**费用**。当 `CREATE_COIN` 输出的总和小于正在花费的硬币数量时，就会产生费用。这意味着 Chia 生态系统中的任何价值都不会被破坏：如果你花费硬币并且不创造任何新硬币，农民可以将现有硬币的价值添加到他们的农业奖励中。
+
+当内存池决定将哪些交易放入一个区块时，它看起来会放入费用/成本比率最高的交易。我们还没有过多谈论成本，但您可以在[这里](/docs/ref/clvm#costs)，我们将在后面的部分中更多地讨论优化。主要思想是：如果您使用大量数据进行复杂且难以运行的事务，您最终可能会支付在合理的时间范围内将其放入区块的费用更高。
+
+<details>
+<summary>原文参考</summary>
+
+- ## Fees and the Mempool
 
 Once you create and push a spend bundle, your node will validate it and then start gossiping the information out to its peers.
 When each node receives a transaction it tries to validate it on its own and will reject it if it considers the spend to be invalid.
@@ -129,7 +248,30 @@ When the mempool is deciding which transactions to put into a block, it looks to
 We haven't talked much about cost yet, but you can find out more about it [here](/docs/ref/clvm#costs) and we'll talk about optimization more in a later section.
 The main idea is: if you make a complex and hard to run transaction with a lot of data, you will probably end up paying a higher fee to get it into a block in a reasonable time frame.
 
-## Transaction Generators
+</details>
+
+## 交易生成器
+
+当农民决定在一个区块中包含交易时，他们会将所有交易聚合到一个称为**交易生成器**的东西中。生成器是一个 clvm 程序，它输出花费组合中的信息。它将产生一个列表包含以下内容的列表：
+
+* 花费硬币的父 ID
+* 谜语和谜底揭示
+* 硬币金额
+
+然后该程序通过[另一个 Chialisp 程序](https://github.com/Chia-Network/chia-blockchain/blob/59de4ffe9f98de62d281695d1f519d65ef2e2ece/chia/wallet/puzzles/rom_bootstrap_generator.clvm)运行，这是共识的一部分在验证节点接收的每个块时使用。该程序解析生成器以获取谜题和解决方案，并返回块中每个交易的总条件列表。
+
+这是一个重要的概念：*一个区块中的所有交易都是并行运行的*。所有这些交易都被评估为一个大程序的事实提供了一些有价值的好处：
+
+农民不能在农场时间提前进行交易，因为交易没有顺序。他们可以踢交易，如果他们愿意，他们可以花费被踢交易计划花费的硬币，但他们不能再将交易添加回因为它*曾经*花费的硬币现在已经花费了。
+
+此外，由于所有交易都作为单个条件列表返回，您的条件可能依赖*来自其他交易的公告*。如果您知道经常发生支出以创建公告，那么您的拼图可以在不是所有者的情况下断言该公告那笔交易！这是 Chia 网络上预言机的潜在实现。一个实体可以创建一个 **singleton**，或者一个可验证只有一个的硬币，并且可以发布依赖于公告的谜语可以断言的每个块的公告。
+
+此外，生成器还可以压缩块中的某些谜语以降低其成本。这完全取决于农民来实现这种压缩，作为 Chialisp 开发人员，您对其没有太多控制权。但是，它确实可以鼓励使用那些特定的可压缩谜语。例如，当农民创建一个包含[标准交易](/docs/standard_transaction)格式的区块时，他们可以将这些交易压缩为一个公钥和一个参考块查找完整的未压缩谜语。如果您查看标准谜语并认为它太复杂而无法用作您正在编写的谜语的内部谜语，您可以尝试制作一个更简单的谜语以节省成本。但是，您实际上最终可能会支付更多成本，因为您的谜语可能不会被压缩，而标准交易会！
+
+<details>
+<summary>原文参考</summary>
+
+- ## Transaction Generators
 
 When a farmer decides to include transactions in a block, they will aggregate all of them into something called a **transaction generator**.
 A generator is a clvm program that outputs the information in the spend bundle.
@@ -159,7 +301,18 @@ For example, when farmers create a block with the [standard transaction](/docs/s
 If you look at the standard puzzle and decide that it's too complex to use as an inner puzzle for a puzzle you are writing, you may try to make a simpler puzzle to save cost.
 However, you may actually end up paying more cost because your puzzle may not be compressed whereas the standard transaction will!
 
-## Conclusion
+</details>
+
+## 结论
+
+您现在应该对谜语运行的环境有一个相当不错的了解。编写安全的 Chialisp 谜语需要一种独特的方式来看待许多其他编程语言或区块链所没有的事物。 对网络的理解与谜语的创造密不可分，虽然这会产生陡峭的学习曲线，但它也能以令人难以置信的紧凑格式实现令人难以置信的功能。
+
+强烈建议您在决定部署任何智能代币之前充分理解本节，以确保它们的安全性和功能性。 简单地在您的计算机上运行谜语并不能替代在数百万个具有不确定意图的节点上运行。
+
+<details>
+<summary>原文参考</summary>
+
+- ## Conclusion
 
 You should now have a pretty decent grasp of the environment that your puzzles will be running in.
 Writing secure Chialisp puzzles requires a somewhat unique way of looking at things that is not shared by many other programming languages or blockchains.
@@ -167,3 +320,5 @@ Understanding of the network is inextricably intertwined with the creation of pu
 
 It is highly recommended that you fully understand this section before you decide to deploy any smart coin so that you can ensure they are secure and functional.
 Simply running the puzzle on your computer is no substitute for having it run on millions of nodes with indeterminable intent.
+
+</details>
