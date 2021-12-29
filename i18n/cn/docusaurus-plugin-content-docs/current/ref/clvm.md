@@ -43,7 +43,7 @@ CLVM 程序必须具有明确的定义和含义，以便 Chia 块验证和共识
 <details>
 <summary>原文参考</summary>
 
-## Definitions
+- ## Definitions
 
 * **CLVM Assembly** - The textual representation of a CLVM program.
 * **CLVM Bytecode** - The serialized form of a CLVM program.
@@ -461,7 +461,7 @@ You must instead write:
 
 nil is self-quoting.
 
-### Compilation: Atom Syntax
+- ### Compilation: Atom Syntax
 
 Although there is only one underlying representation of an atom, different syntaxes are recognized during compile time, and those atom syntaxes are interpreted differently during the translation from program text to CLVM Objects.
 
@@ -477,7 +477,7 @@ which is not the same as a single zero byte.
 
 `(q . 0x0)` => `0x00`
 
-#### Equivalence of Strings, symbols, hex strings, and numbers
+- #### Equivalence of Strings, symbols, hex strings, and numbers
 
 `"A"` is the same atom as `A`
 
