@@ -1,8 +1,75 @@
 ---
 id: faq
-title: ChiaLisp and CLVM FAQ
-sidebar_label: ChiaLisp and CLVM FAQ
+title: ChiaLisp 和 CLVM 常见问答
+sidebar_label: ChiaLisp 和 CLVM 常见问答
 ---
+
+> ChiaLisp and CLVM FAQ
+
+**问：** 为什么我的号码被评估为 `()`，又名 `nil`？
+
+**答:** 在 clvm（`brun` 命令）中，整数被评估为参数树中参数的引用。如果命令行上没有给出参数树，则默认为空参数树。如果没有找到参数，则返回 `nil`。在 ChiaLisp（`run` 命令）中，整数被编译为引用的原子，这会给你你期望的值。
+____
+
+**问：** 是否可以在智能币中存储数据或维护状态？
+
+**答:** 是的，但可能不是您的想法。ChiaLisp 环境的设计非常有意，以便状态仅存储在硬币中。请记住，Chia 使用智能代币，而不是智能合约。这导致了与智能合约不同的设计。Chia 智能硬币的一个常见设计模式是，它们将使用相同的谜题重新创建自己，但更改了一些“状态”。
+___
+
+**问：** ChiaLisp、CLVM 字节码、CLVM 程序集和条件语言有什么区别？
+
+**答:** ChiaLisp 是高级语言，可以编译成称为 CLVM 的低级语言。
+
+CLVM 汇编是 ChiaLisp 编译成的低级语言。
+
+CLVM 字节码是 CLVM 程序集的序列化形式。
+
+当 CLVM 在网络上运行时，它可以使用一种称为条件语言的语言来声明满足某些要求。条件语言是一系列同时被评估的语句。
+____
+
+**问：** 什么是 CAT？
+
+**答:** CAT 代表 Chia Asset Token。
+
+CAT 是可替代的代币，由 XCH 铸造并存在于 Chia 的区块链上。 CAT 具有被“标记”的特性，使它们无法作为常规 XCH 使用。然而，通常有可能“退役”CAT，然后它们“融合”回XCH。
+____
+
+**问：** 什么是 TAIL？
+
+**答:** TAIL 代表代币和资产发行限制器。
+
+TAIL 是 Chialisp 程序，用于验证是否遵守了 CAT 的所有供应规则。共享相同 TAIL 的两个 CAT 属于相同类型。 TAIL 定义了 CAT。
+
+有关 CAT 和 TAILS 的更多信息，请查看我们的 [CAT1 标准](https://chialisp.com/docs/puzzles/cats "CAT1 standard documentation")文档。
+____
+
+**问：** 我怎样才能收到一些代币？
+
+**答:** 如果您将您的 XCH 钱包地址提供给某人，他们可以向您发送代币，就像他们向您发送 XCH 一样。如果您收到的代币在我们的验证列表中，它们将自动显示在您的轻钱包中（完整的钱包功能将在未来版本中推出）。
+
+如果您的新代币不在我们的验证列表中，您需要手动添加钱包。首先从向您发送令牌的人那里获取 CAT 的 ID。在您的轻钱包左上角，点击“+ ADD TOKEN”，然后点击“+自定义”。在名称字段中输入您的 CAT 的名称。对于令牌和资产发行限制字段，添加 CAT 的 ID。单击添加。
+
+你应该被带到你的 CAT 的钱包里。如果您已经收到代币，它们将显示在此钱包中。
+____
+
+**问：** 我可以制作自己的 CAT 吗？
+
+**答：** 当然！我们有教程来指导您在 [Windows](https://www.chialisp.com/docs/tutorials/CAT_Launch_Process_Windows "Chia Asset Token tutorial for Windows users") 和 [Linux/MacOS](https://www.chialisp.com/docs/tutorials/CAT_Launch_Process_Linux_MacOS "Chia Asset Token tutorial for Linux and MacOs users")上完成 CAT 创建过程。
+____
+
+**问：** 如何验证我的 CAT？
+
+**答:** 最终我们会发布一个正式的流程供您验证您的 CAT，之后它将在我们的钱包 GUI 中列为默认 CAT 之一。请记住，这将是一个严格控制的过程，很少有 CAT 被验证。但是不要让这阻止您创建自己的 CAT——它们仍然可以工作，即使它们没有列在我们的 GUI 中。
+
+**问：** 什么样的 CAT 正在开发中？
+
+**答:** 现在给出任何具体细节还为时过早，但许多不同的 CAT 即将*很快*！
+
+预计验证过程将在 2022 年 1 月左右发布。
+
+
+<details>
+<summary>原文参考</summary>
 
 **Q:** Why is my number being evaluated to `()`, a.k.a. `nil`?
 
@@ -71,3 +138,6 @@ Expect the verification process to be published around January 2022.
 **Q:** What sort of CATs are in development?
 
 **A:** It's too early to give any specific details, but many different CATs are coming _soon_!
+
+</details>
+
