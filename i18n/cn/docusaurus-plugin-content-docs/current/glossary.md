@@ -1,11 +1,11 @@
 ---
 id: glossary
-title: 伟大的 Chia 词汇表
+title: 术语表
 ---
 
 > The Great Chia Glossary
 
-本指南将作为 Chia 中使用的许多概念的词汇表。如果您熟悉比特币交易的工作原理，那么其中的很多内容都会很熟悉。
+本指南将作为奇亚中使用的许多概念的术语表。如果您熟悉比特币交易的工作原理，那么其中的很多内容都会很熟悉。
 
 <details>
 <summary>原文参考</summary>
@@ -17,15 +17,15 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 ---
 
-* **Coin（TXO/交易输出）** - 硬币存储价值。所有硬币都是作为交易的输出或 coinbase 奖励或费用目标生成的。一枚硬币只花费一次，让它的价值进入其他硬币，然后被永久销毁。每个未使用的硬币都被一个 Chialisp 程序锁定，这是该硬币的谜题，谁拥有解决该谜语的信息，谁就是可以花费该硬币的人。最基本的谜语有一个公钥并接受一个包含由相应私钥签名的条件列表的谜底，因此只有私钥的所有者才能解锁硬币并花费它。
+* **<abbr title="Coin">硬币</abbr>（TXO/交易输出）** - 硬币存储价值。所有硬币都是作为交易的输出或创币交易奖励或费用目标生成的。一枚硬币只花费一次，让它的价值进入其他硬币，然后被永久销毁。每个未使用的硬币都被一个 Chialisp 程序锁定，这是该硬币的谜题，谁拥有解决该谜语的信息，谁就是可以花费该硬币的人。最基本的谜语有一个公钥并接受一个包含由相应私钥签名的条件列表的谜底，因此只有私钥的所有者才能解锁硬币并花费它。
 
-* **未使用币/币集合（UTXO/未使用交易输出）** - 一种已经创建但尚未使用的硬币，因此正在存储价值。Unspents (UTXO set/unspent transaction output set) - 这是网络上所有未花费硬币的集合。它用于检查交易是否有效，充当谜题的查找。它将硬币 ID 映射到区块高度中的生日。交易必须包含用于计算 ID 的信息的揭示，以便它可以被验证，因为未花费的不包含该信息，只有可用于验证它的散列。
+* **<abbr title="Unspent Coin/Coin Set">未使用硬币/硬币集合</abbr>（UTXO/未使用交易输出）** - 一种已经创建但尚未使用的硬币，因此正在存储价值。Unspents (UTXO set/unspent transaction output set) - 这是网络上所有未花费硬币的集合。它用于检查交易是否有效，充当谜题的查找。它将硬币 ID 映射到区块高度中的生日。交易必须包含用于计算 ID 的信息的揭示，以便它可以被验证，因为未花费的不包含该信息，只有可用于验证它的散列。
 
-* **Coin ID/CoinName（TXO ID/交易输出 ID）** - Chia 中硬币的 ID 是通过散列主要输入 ID、拼图散列和按该顺序连接的金额生成的。这与比特币非常不同，比特币使用更多数据来形成 TXO ID，限制了智能币的功能。 （另见：[SegWit](https://en.wikipedia.org/wiki/SegWit)）
+* **硬币ID/硬币名称（TXO ID/交易输出 ID）** - Chia 中硬币的 ID 是通过散列主要输入 ID、拼图散列和按该顺序连接的金额生成的。这与比特币非常不同，比特币使用更多数据来形成 TXO ID，限制了智能币的功能。 （另见：[SegWit](https://en.wikipedia.org/wiki/SegWit)）
 
-* **币存储** - 硬币实际存储在区块链数据库中并通过全节点的 RPC API 返回的格式。包含有关硬币的基本信息以及有关何时确认和花费的信息。
+* **硬币记录** - 硬币实际存储在区块链数据库中并通过全节点的 RPC API 返回的格式。包含有关硬币的基本信息以及有关何时确认和花费的信息。
 
-* **主要输入/父** - 创建硬币时，在交易中用作输入的硬币被指定为主要输入。这用于创建硬币 ID。如果超过一枚硬币被用作交易中的输入，则其中一枚硬币被指定为主要输入，而其他硬币只是加强交易。
+* **主要输入/父币** - 创建硬币时，在交易中用作输入的硬币被指定为主要输入。这用于创建硬币 ID。如果超过一枚硬币被用作交易中的输入，则其中一枚硬币被指定为主要输入，而其他硬币只是加强交易。
 
 * **支出/硬币谜底** - 支出是硬币 ID、完整谜语代码以及与谜语一起运行的谜底的揭示。花费的结果由使用谜底运行谜语后返回的条件决定。
 
@@ -33,7 +33,7 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **费用** - 在一次支出中创造的新硬币数量总和与在同一支出中花费的硬币数量总和之间的差额。所有这些超额价值都作为农业奖励的一部分提供给农民。
 
-* **内存池** - 在完整节点中待处理的一组交易，以形成一个区块。全节点大概会尝试优化它包含在一个区块中的交易，以提取最多的费用。
+* **交易池** - 在完整节点中待处理的一组交易，以形成一个区块。全节点大概会尝试优化它包含在一个区块中的交易，以提取最多的费用。
 
 * **Chialisp** - Chialisp 是图灵完备的函数式语言，用它编写了花费硬币的谜语。有关更多信息，请参阅我们的[CLVM 指南](/docs/)
 
@@ -47,7 +47,7 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **增强签名** - 增强签名需要在消息之前添加公钥，这意味着这些签名在聚合中是安全的，因为公钥不能专门为消息（流氓公钥）制作
 
-* **Op 约束/条件** - 谜语通过解决方案时返回条件。如果满足所有返回的条件，则交易有效。
+* **操作符约束/条件** - 谜语通过解决方案时返回条件。如果满足所有返回的条件，则交易有效。
 
 * **交易生成器** - 存储在块中的 CLVM 程序，该程序运行包含的每个谜语和谜底，并返回作为结果输出的所有条件的聚合。
 当全节点验证区块链时，它们会运行交易生成器并将所有支出验证为一笔大额支出。
@@ -56,11 +56,11 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **智能硬币** - 智能硬币是一种用专门的 Chialisp 谜语锁定的硬币，可以实现复杂的区块链交互。 Chia 中的所有硬币都是智能硬币，但这通常代表大多数开发人员熟悉的“智能合约”一词。
 
-* **Chia 资产代币** - *（以前称为“彩色硬币”）* Chia Asset Tokens (CATs) 是一种由用户创建的特殊类型的chia 硬币。 CAT 是具有唯一标记的 chia 子集，无法伪造并且可以链接到其他资产。 Chia Asset Token 标准称为 *CAT1*，您可以在[此处](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html) 阅读更多相关信息。
+* **奇亚资产代币/喵币** - *（以前称为“彩色硬币”）* Chia Asset Tokens (CATs) 是一种由用户创建的特殊类型的chia 硬币。 CAT 是具有唯一标记的 chia 子集，无法伪造并且可以链接到其他资产。 Chia Asset Token 标准称为 *CAT1*，您可以在[此处](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html) 阅读更多相关信息。
 
 * **授权收款人** - 授权收款人是一种智能硬币，这意味着钱包 A 可以给钱包 B 一些钱，但钱包 B 只能以钱包 A 明确授权的方式使用这笔钱。
 
-* **去中心化 ID** - 去中心化 ID 是一种智能硬币，它使钱包能够充当 ID，可以向其他 ID 发送消息。基于[身份基金会](https://identity.foundation/)的工作。
+* **去中心化身份** - 去中心化 ID 是一种智能硬币，它使钱包能够充当 ID，可以向其他 ID 发送消息。基于[身份基金会](https://identity.foundation/)的工作。
 
 * **柯里化** - 一种 Chialisp 技术，其中在对拼图进行哈希处理之前预先提交谜底值。非常有用，几乎是所有 Chialisp 谜语的一部分。
 
@@ -68,10 +68,10 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **委托谜语** - 作为参数传递给另一个谜语的谜语，用于生成传递给的谜语的最终输出条件。只要他们首先满足其他一些标准，这用于最终控制如何将硬币花费给求解器。
 
-* **Singleton** - 单身是一种可验证独一无二的硬币。与 NFT 类似（但比 NFT 更强大），如果单例被销毁，则无法复制、复制或重新创建它。
+* **单例硬币** - 单例硬币是一种可验证独一无二的硬币。与 NFT 类似（但比 NFT 更强大），如果单例被销毁，则无法复制、复制或重新创建它。
 这是 DID、NFT 或池化协议等事物的常见外部难题。
 
-* **矿池协议** - 网络协议和 Chialisp 谜语的统称，可在 Chia 网络上实现矿池化。您可以在[此处](/docs/puzzles/pooling) 查看 Chialisp 部分的细目分类。
+* **池化协议** - 网络协议和 Chialisp 谜语的统称，可在 Chia 网络上实现池化。您可以在[此处](/docs/puzzles/pooling) 查看 Chialisp 部分的细目分类。
 
 
 <details>
@@ -134,5 +134,12 @@ Extremely useful and part of almost all Chialisp puzzles.
 It is a common outer puzzle for things like DIDs, NFTs, or the pooling protocol.
 
 * **Pooling Protocol** - A collective term for the network protocol and Chialisp puzzles that enable pooling on the Chia network.  You can see a breakdown of the Chialisp section [here](/docs/puzzles/pooling).
+
+</details>
+
+<details>
+<summary>官方文档中未提及的重要术语</summary>
+
+* **创币交易/Coinbase** - 创造硬币的原始交易，无交易输入，即由区块链创造出崭新硬币的第一笔交易
 
 </details>
