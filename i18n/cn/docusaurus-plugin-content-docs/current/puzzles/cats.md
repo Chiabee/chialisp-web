@@ -5,23 +5,6 @@ title: Chia 资产代币（Cats）
 
 > Chia Asset Tokens (CATs)
 
-
-<details>
-<summary>原文参考</summary>
-
-Contents:
-
-* [Introduction to CATs](#introduction-to-cats)
-* [Design choices](#design-choices)
-* [Spend Accounting](#spend-accounting)
-* [Extra Delta](#extra-delta)
-* [The Token and Asset Issuance Limiter (TAIL) Program](#the-token-and-asset-issuance-limiter-tail-program)
-* [The limits of a TAIL's power](#the-limits-of-a-tails-power)
-* [TAIL Examples](#tail-examples)
-* [CAT denominations, value, and retirement rules](#cat-denominations-value-and-retirement-rules)
-* [Conclusion](#conclusion)
-</details>
-
 -----
 
 ## CAT 简介
