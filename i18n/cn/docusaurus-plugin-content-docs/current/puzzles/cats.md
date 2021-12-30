@@ -1,7 +1,28 @@
 ---
 id: cats
-title: Chia Asset Tokens (CATs)
+title: Chia 资产代币（Cats）
 ---
+
+> Chia Asset Tokens (CATs)
+
+目录：
+
+* [CAT 简介](#introduction-to-cats)
+* [Design choices](#design-choices)
+* [Spend Accounting](#spend-accounting)
+* [Extra Delta](#extra-delta)
+* [The Token and Asset Issuance Limiter (TAIL) Program](#the-token-and-asset-issuance-limiter-tail-program)
+* [The limits of a TAIL's power](#the-limits-of-a-tails-power)
+* [TAIL Examples](#tail-examples)
+* [CAT denominations, value, and retirement rules](#cat-denominations-value-and-retirement-rules)
+* [Conclusion](#conclusion)
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
+
 
 Contents:
 
@@ -16,6 +37,15 @@ Contents:
 * [Conclusion](#conclusion)
 
 -----
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
+
 ## Introduction to CATs
 
 **Chia Asset Tokens (CATs)** are fungible tokens that are issued from XCH.
@@ -53,6 +83,14 @@ In all of these cases, the TAIL program is run when a coin is spent to check if 
 
 We will cover the TAIL program in more detail later, but first let's cover what the CAT layer does.
 
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
 
 ## Design choices
 
@@ -100,6 +138,13 @@ We use a group accounting trick to guarantee this, which we will cover in more d
   * CAT TAIL Program Hash - The hash of the TAIL program that was curried into the CAT
 
 
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
+
 ## Spend Accounting
 
 Each CAT coin has a truthful calculation of the difference between its amount and its output amount, called its **Delta**.
@@ -123,6 +168,14 @@ In order to create the `next_coin_id`, we wrap the next coin's inner puzzle with
 
 Because both coins follow the same CAT module code, they must comply with the same set of truths. This, in turn, guarantees that the whole ring is telling the truth. As long as the ring is connected, the total Delta must be zero.
 
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
 
 ## Extra Delta
 
@@ -162,6 +215,15 @@ The TAIL should check diligently for the following things:
   * Is the Extra Delta minting or retiring any coins, and if so, do I approve?
   * If this coin's parent is not a CAT of the same type as me, do I approve?
 
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
+
 ## The limits of a TAIL's power
 
 In Ethereum, a token's issuer might have the ability to freeze or confiscate funds without the owner's permission. This is not possible in Chia. Let's explore why.
@@ -171,6 +233,16 @@ In Chia, an issuer creates a TAIL, which lives inside all CATs of the same type,
 This decision adds some decentralization for users. It also adds some complexity. The importance of creating a well-constructed TAIL cannot be emphasized enough. Once you have distributed a CAT, it is no longer possible to change the TAIL across the entire token supply. The TAIL is locked into the same set of rules forever. To change the TAIL would be tantamount to replacing physical cash in circulation. You would have to offer an exchange for new tokens and eventually deprecate the old token, even if some people still carry it.
 
 It also means that if the set of rules is compromised, people may be able to mint or retire CATs maliciously. There’s no easy way to “patch” the TAIL, other than through the process above, which is obviously best avoided.
+
+
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
 
 ## TAIL Examples
 
@@ -199,7 +271,17 @@ The CAT1 standard currently includes three example TAILs, though many more are p
   Note that we use AGG_SIG_UNSAFE in order to make this signature work for all coins. The creator can publish a valid signature, allowing any owner of the CAT to run the TAIL on their own. One scenario where this is useful is in redemption schemes -- you want to allow people to melt their CATs into XCH as long as they follow certain rules when they do so.
   
   There is another consideration to make when you are signing new Delegated TAILs. Once you sign it and publish the signature, it is out there forever. Be careful what permissions you grant because you can never take them back.
-  
+
+
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
+
 ## CAT denominations, value, and retirement rules
 
 Some design decisions regarding the granularity and denomination of CATs versus XCH:
@@ -255,6 +337,16 @@ Beyond our pre-packaged examples, TAILs with a wide range of functionality are a
   If a CAT is not financially successful, its melt value could exceed its face value, in the same way that the metals that compose a US penny are worth more than one cent. In this case, it might make financial sense for the CAT's owner to retire a token by melting it into 1000 XCH mojos. Because of the low default melt value of tokens, this motivation for melting will likely be rare.
 
 In each of these examples, the rules of retirement for a specific CAT are clearly spelled out in the TAIL. If a TAIL allows for retirement against the owner's will, the owner will be able to ascertain this information before acquiring the token.
+
+
+
+
+
+<details>
+<summary>原文参考</summary>
+
+
+</details>
 
 
 ## Conclusion
