@@ -5,17 +5,6 @@ title: Chia 资产代币（Cats）
 
 > Chia Asset Tokens (CATs)
 
-目录：
-
-* [CAT 简介](#CAT-简介)
-* [设计选择](#设计选择)
-* [支出账户](#支出账户)
-* [额外的 Delta](#额外的-Delta)
-* [代币和资产发行限制器（TAIL）计划](#代币和资产发行限制器（TAIL）计划)
-* [AIL 力量的极限](#AIL 力量的极限)
-* [TAIL 示例](#TAIL-示例)
-* [CAT 面额、价值和退休规则](#CAT-面额-价值和退休规则)
-* [结论](#结论)
 
 <details>
 <summary>原文参考</summary>
