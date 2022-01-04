@@ -1,8 +1,8 @@
 ---
-id: coin_lifecycle_and_testing
+id:  coin_lifecycle_and_testing
 title: Coin Lifecycle and Testing
-sidebar_label: title: Coin Lifecycle and Testing
----~~~~
+sidebar_label: Coin Lifecycle and Testing
+---~~‌~~
 
 In these videos, Chia developer Matt Hauff covers creating your first smart coin in Chia and running tests through the example of a piggybank smart coin. 
 
