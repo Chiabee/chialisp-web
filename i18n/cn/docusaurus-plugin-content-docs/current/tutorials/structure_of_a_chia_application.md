@@ -1,10 +1,14 @@
 ---
 id: structure_of_a_chia_application
-title: Structure of a Chia Application
-sidebar_label: Structure of a Chia Application
+title: Chia 应用程序的结构
+sidebar_label: Chia 应用程序的结构
 ---
 
-# Basic structure of an app using chia
+> Structure of a Chia Application
+
+# 使用 chia 的应用程序的基本结构
+
+> Basic structure of an app using chia
 
 ```
 
@@ -24,7 +28,26 @@ sidebar_label: Structure of a Chia Application
                                      User
 ```
 
-### Concerns for developing chia apps
+### 开发 chia 应用程序的顾虑
+
+- 该应用程序可能至少目前需要连接到 chia RPC。
+
+- 需要一个“钱包”类型的系统来跟踪区块链流量，以便应用程序的当前状态概念可以从区块链中表示的相同信息中恢复，并通过节点 API 保持呈现给最终用户的状态一致以及一组精心设计的 chialisp 代码参数。通过全节点的 get_additions_and_removals 和通过 get_puzzle_and_solution 的解决方案可以获得区块中触及的硬币。通过检查每个块，可以找到特殊格式的硬币解决方案并跟踪它们。
+
+- 应用程序至少需要允许用户以易于理解的方式执行操作，这意味着结合使用钱包和节点的 RPC API 来
+
+   1. 通过 get_transactions、get_coin_record_by_name 和 get_private_key 以及 master_sk_to_wallet_sk 函数确定在与区块链上的硬币交互时要使用的公钥和私钥。
+
+   2. 通过 push_tx 将交易发送到区块链。
+
+- 应用程序可能无法保证在其部署的代码的整个持续时间内保持运行，因此从区块链获取的任何状态都应存储在本地缓存数据库中并从中检索。
+
+- 如果不止一个方在相关硬币上进行合作，则需要将识别相关硬币的标识符发送到带外，或者需要将接收者可识别的内容嵌入硬币解决方案中。
+
+<details>
+<summary>原文参考</summary>
+
+- ### Concerns for developing chia apps
 
 - The app likely needs a connection to the chia RPC at least for now.
 
@@ -55,3 +78,6 @@ sidebar_label: Structure of a Chia Application
   identifier picking out the coin in question needs to be sent out of band or
   something identifiable by the recipient needs to be embedded in the coin
   solution.
+
+</details>
+
