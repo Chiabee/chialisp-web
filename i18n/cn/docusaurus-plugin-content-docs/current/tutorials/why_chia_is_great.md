@@ -23,8 +23,22 @@ This video is a high level overview of the design decisions made in the Chia tha
 <iframe src="//www.youtube.com/embed/jRyTNdqP07Y" frameborder="0" allowfullscreen width="100%"></iframe>
 </figure>
 
+观看以下视频，了解有关在 Chialisp 中编程所需的思维方式和基本技能的更多信息。
+
+<details>
+<summary>原文参考</summary>
+
 Watch the following videos to learn more about the mindset and basic skills needed to program in Chialisp.
+
+</details>
 
 ---
 
+如果您还有其他问题，请加入 [Chia Network 的公共 Keybase 团队](https://keybase.io/team/chia_network.public) 并在 *#chialisp* 频道中提问。
+
+<details>
+<summary>原文参考</summary>
+
 If you have further questions, join [Chia Network's public Keybase team](https://keybase.io/team/chia_network.public) and ask in the *#chialisp* channel.
+
+</details>
