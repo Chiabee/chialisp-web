@@ -1,8 +1,10 @@
 ---
 id: why_chia_is_great
-title: Why Chia is Great
-sidebar_label: Why Chia is Great
+title: Chia 为何如此优秀
+sidebar_label: Chia 为何如此优秀
 ---~~‌~~
+
+> Why Chia is Great
 
 Welcome to the Chialisp tutorial series. 
 
