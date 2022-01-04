@@ -1,16 +1,16 @@
 ---
 id: coin_lifecycle_and_testing
 title: 硬币生命周期和测试
-sidebar_label: title: 硬币生命周期和测试
----~~‌~~
+sidebar_label: title: 硬币生命周期和测试 
+---
 
 > Coin Lifecycle and Testing
 
 在这些视频中，Chia 开发人员 Matt Hauff 介绍了在 Chia 中创建您的第一个智能硬币并通过存钱罐智能硬币示例运行测试。
 
-如果您尚未观看 [设置环境的视频](/docs/tutorials/tools_and_setup)，请先观看。
+如果您尚未观看[设置环境的视频](/docs/tutorials/tools_and_setup)，请先观看。
 
-您可以在 [此处](/files/Piggybank_Example.zip) 下载存钱罐硬币示例文件。
+您可以在[此处](/files/Piggybank_Example.zip) 下载存钱罐硬币示例文件。
 
 <details>
 <summary>原文参考</summary>
@@ -31,7 +31,9 @@ You can download the piggybank coin example files [here](/files/Piggybank_Exampl
 <iframe src="//www.youtube.com/embed/v1o7fRHGPpM" frameborder="0" allowfullscreen width="100%"></iframe>
 </figure>
 
-## 3 - Finish Writing Your First Smart Coin
+## 3 - 完成你的第一个智能硬币的编写
+> Finish Writing Your First Smart Coin
+
 <figure class="video-container">
 <iframe src="//www.youtube.com/embed/q1ZsTWRKd8A" frameborder="0" allowfullscreen width="100%"></iframe>
 </figure>
