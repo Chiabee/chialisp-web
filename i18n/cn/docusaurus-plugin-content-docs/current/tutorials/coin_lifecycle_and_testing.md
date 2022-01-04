@@ -1,8 +1,8 @@
 ---
 id: coin_lifecycle_and_testing
-title: 硬币生命周期和测试
-sidebar_label: title: 硬币生命周期和测试 
----
+title: Coin Lifecycle and Testing
+sidebar_label: title: Coin Lifecycle and Testing
+---~~~~
 
 > Coin Lifecycle and Testing
 
