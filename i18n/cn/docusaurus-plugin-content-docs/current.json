@@ -12,15 +12,15 @@
     "description": "The label for category CLVM in sidebar someSidebar"
   },
   "sidebar.someSidebar.category.Puzzles": {
-    "message": "Puzzles",
+    "message": "谜语",
     "description": "The label for category Puzzles in sidebar someSidebar"
   },
   "sidebar.someSidebar.category.Tutorials": {
-    "message": "Tutorials",
+    "message": "教程",
     "description": "The label for category Tutorials in sidebar someSidebar"
   },
   "sidebar.someSidebar.category.FAQ": {
-    "message": "FAQ",
+    "message": "常见问答",
     "description": "The label for category FAQ in sidebar someSidebar"
   }
 }
