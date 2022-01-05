@@ -1,7 +1,7 @@
 ---
 id: single_issuance_CAT
-title: Single Issuance CAT
-sidebar_label: Single Issuance CAT
+title: 单次签发 CAT
+sidebar_label: 单次签发 CAT
 ---~~‌~~
 
 > Single Issuance CAT
