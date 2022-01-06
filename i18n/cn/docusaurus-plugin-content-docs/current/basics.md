@@ -26,7 +26,7 @@ Follow the instructions in the README to install it.
 
 ## CLVM 值
 
-CLVM 由 [cons 盒子](https://en.wikipedia.org/wiki/Cons) 和[原子](https://www.gnu.org/software/emacs/manual/html_node/eintr/Lisp-Atoms.html#:~:text=Technically%20speaking%2C%20a%20list%20in,nothing%20in%20it%20at%20all.)构建而成。这些被称为 CLVM 对象。cons 盒子是一对 CLVM 对象。 cons 盒子中的项目可以是原子或另一个 cons 盒子。
+CLVM 由 [cons 框](https://en.wikipedia.org/wiki/Cons) 和[原子](https://www.gnu.org/software/emacs/manual/html_node/eintr/Lisp-Atoms.html#:~:text=Technically%20speaking%2C%20a%20list%20in,nothing%20in%20it%20at%20all.)构建而成。这些被称为 CLVM 对象。cons 框是一对 CLVM 对象。 cons 框中的项目可以是原子或另一个 cons 框。
 
 ### 原子
 
@@ -34,13 +34,13 @@ CLVM 由 [cons 盒子](https://en.wikipedia.org/wiki/Cons) 和[原子](https://w
 
 CLVM 中的所有原子都是不可变的。所有对原子执行计算的运算符都会为结果创建新原子。
 
-原子可以用三种不同的方式打印，十进制、十六进制和字符串。十六进制值以 `0x` 为前缀，字符串用 `“` 引用。整数的打印方式不影响其底层值。十进制打印的原子 `100` 与十六进制打印的 `0x64` 相同。同样，值 `0x68656c6c6f` 与 `hello`。
+原子可以用三种不同的方式打印，十进制、十六进制和字符串。十六进制值以 `0x` 为前缀，字符串用 `"` 引用。整数的打印方式不影响其底层值。十进制打印的原子 `100` 与十六进制打印的 `0x64` 相同。同样，值 `0x68656c6c6f` 与 `hello`。
 
 将原子解释为整数时，重要的是要记住它们是有符号的。为了表示一个正整数，最高有效位可能不被设置。因此，正整数前面有一个 0 字节，以防设置下一个字节中的最高有效位。
 
-### Cons 盒子
+### Cons 框
 
-Cons 盒子表示为一个括号，其中两个元素以 `.` 分隔。例如：
+Cons 框表示为一个括号，其中两个元素以 `.` 分隔。例如：
 
 ```chialisp
 (200 . "hello")
@@ -48,13 +48,13 @@ Cons 盒子表示为一个括号，其中两个元素以 `.` 分隔。例如：
 ("hello" . ("world" . "!!!"))
 ```
 
-是合法的 cons 盒子，但以下不是。
+是合法的 cons 框，但以下不是。
 
 ```chialisp
 (200 . 300 . 400)
 ```
 
-cons 盒子总是有两个元素。但是，我们可以将 cons 盒子链接在一起以构建列表。
+cons 框总是有两个元素。但是，我们可以将 cons 框链接在一起以构建列表。
 
 <details>
 <summary>原文参考</summary>
@@ -94,21 +94,21 @@ However, we can chain cons boxes together to construct lists.
 
 </details>
 
-## 列表
+## Lists
 
-列表用括号括起来，列表中的每个条目都是单行的，值之间没有句点。列表比 cons 盒子更常用，因为它们更通用。
+list 用括号括起来，list 中的每个条目都是单行的，值之间没有句点。列表比 cons 框更常用，因为它们更通用。
 
 ```chialisp
 (200 300 "hello" "world")
 ```
 
-您还可以嵌套列表。
+您还可以嵌套 list。
 
 ```chialisp
 ("hello" ("nested" "list") ("world"))
 ```
 
-请记住，列表是以空原子 () 结尾的连续 cons 盒子的表示。以下表达式是相等的：
+请记住，list 是以空原子 () 结尾的连续 cons 框的表示。以下表达式是相等的：
 
 ```chialisp
 (200 . (300 . (400 . ())))
@@ -144,7 +144,7 @@ The following expressions are equal:
 
 ## 引用
 
-要将原子解释为值而不是程序，需要用 `q` 引用它。引用的值形成一个 cons 盒子，其中第一项是 `q` 运算符。例如，这个程序只是值 `100`：
+要将原子解释为值而不是程序，需要用 `q` 引用它。引用的值形成一个 cons 框，其中第一项是 `q` 运算符。例如，这个程序只是值 `100`：
 
 ```chialisp
 (q . 100)
@@ -167,9 +167,9 @@ Note that in the higher level Chialisp language, values do not need to be quoted
 
 </details>
 
-## 列表和程序
+## list 和程序
 
-列表是括号内的一个或多个元素的任何以空格分隔的有序组。例如：`(70 80 90 100)`、`(0xf00dbabe 48 "hello")` 和 `(90)` 都是有效列表。
+list 是括号内的一个或多个元素的任何以空格分隔的有序组。例如：`(70 80 90 100)`、`(0xf00dbabe 48 "hello")` 和 `(90)` 都是有效 list。
 
 列表甚至可以包含其他列表，例如 `("list" "list" ("sublist" "sublist" ("sub-sublist")) "list")`。 
 
@@ -177,10 +177,10 @@ Note that in the higher level Chialisp language, values do not need to be quoted
 
 **为了使列表成为有效程序：**
 
-- **1. 列表中的第一项必须是有效的运算符**
+- **1. list 中的第一项必须是有效的运算符**
 - **2. 第一个之后的每个项目都必须是一个有效的程序**
 
-规则 2 是文字值和非程序列表 *必须* 使用 `q . ` 引用的原因。
+规则 2 是文字值和非程序 list *必须* 使用 `q . ` 引用的原因。
 
 ```chialisp
 $ brun '(q . (80 90 100))'
@@ -236,7 +236,7 @@ It is recommended that you create your programs in an editor with brackets match
 
 </details>
 
-## 列出运算符
+## list 运算符
 
 `f` 返回传递列表中的第一个元素。
 
@@ -328,7 +328,7 @@ $ brun '(/ (q . 20) (q . 11))'
 1
 ```
 
-*注意 `/`返回* ***落地** 商。 CLVM 也不同于大多数语言，因为它下限为负无穷大而不是零。在尝试对负数进行除法时，这可能会产生一些意想不到的结果。*
+*注意 `/`返回**落地**商。 CLVM 也不同于大多数语言，因为它下限为负无穷大而不是零。在尝试对负数进行除法时，这可能会产生一些意想不到的结果。*
 
 
 ```chialisp
@@ -345,7 +345,7 @@ brun '(/ (q . -3) (q . -2))'
 1
 ```
 
-您可能已经注意到，上面的乘法示例在列表中采用了两个以上的参数。 这是因为许多运算符可以采用可变数量的参数。 `+` 和 `*` 是可交换的，因此参数的顺序无关紧要。 对于非交换操作，`(- 100 30 20 5)` 等价于`(- 100 (+ 30 20 5))`。 类似地，`(/ 120 5 4 2)` 等价于`(/ 120 (* 5 4 2))`。
+您可能已经注意到，上面的乘法示例在 list 中采用了两个以上的参数。 这是因为许多运算符可以采用可变数量的参数。 `+` 和 `*` 是可交换的，因此参数的顺序无关紧要。 对于非交换操作，`(- 100 30 20 5)` 等价于`(- 100 (+ 30 20 5))`。 类似地，`(/ 120 5 4 2)` 等价于`(/ 120 (* 5 4 2))`。
 
 ```chialisp
 $ brun '(- (q . 5) (q . 7))'
@@ -788,7 +788,7 @@ And so on.
 
 这标志着本指南的这一部分结束。在本节中，我们已经介绍了使用 CLVM 的许多基础知识。建议您在继续之前使用此处提供的信息进行一些尝试。
 
-本指南并未涵盖 CLVM 中可用的所有运算符——尝试使用 [此处](/docs/ref/clvm) 列出的其他一些运算符！
+本指南并未涵盖 CLVM 中可用的所有运算符——尝试使用[此处](/docs/ref/clvm) 列出的其他一些运算符！
 
 <details>
 <summary>原文参考</summary>
