@@ -84,7 +84,7 @@ If you're wondering how this works (and how the [signature locked coin](/docs/co
 
 </details>
 
-## 评估简介
+## 求值简介
 
 在 [CLVM 的介绍](/docs/)中我们提到程序通常是一个列表，其中第一个元素是一个运算符，每个后续元素都是一个有效的程序。我们还可以在程序中运行带有新参数的程序。
 
