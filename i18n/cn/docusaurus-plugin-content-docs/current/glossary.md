@@ -35,19 +35,19 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **<abbr title="Mempool">交易池</abbr>** —— 在完整节点中待处理的一组交易，以形成一个区块。全节点大概会尝试优化它包含在一个区块中的交易，以提取最多的费用。
 
-* **<abbr title="Chialisp">Chialisp</abbr>** —— Chialisp 是图灵完备的函数式语言，用它编写了花费硬币的谜语。有关更多信息，请参阅我们的[CLVM 指南](/docs/)
+* **<abbr title="Chialisp">Chialisp</abbr>** —— Chialisp 是图灵完备的函数式语言，用它编写了花费硬币的谜语。有关更多信息，请参阅我们的 [CLVM 指南](/docs/)。
 
 * **<abbr title="">谜语</abbr> (Scriptpubkey)** —— Chialisp 程序，用于指定硬币在花费时的行为。谜语可以拒绝谜底或输出一组条件。
 
-* **<abbr title="Puzzle"></abbr>谜底 (Scriptsig)** —— 这是一些 Chialisp，在提交交易时传递给拼图进行评估。有关交易如何运作以及解决方案如何生成新硬币的更多信息，请查看此[指南](/docs/coins_spends_and_wallets)
+* **<abbr title="Puzzle"></abbr>谜底 (Scriptsig)** —— 这是一些 Chialisp，在提交交易时传递给拼图进行评估。有关交易如何运作以及解决方案如何生成新硬币的更多信息，请查看此[指南](/docs/coins_spends_and_wallets)。
 
-* **<abbr title="CLVM">CLVM</abbr>** —— CLVM 是 Chialisp 虚拟机，它是运行谜语和谜底的沙盒环境。CLVM 仅运行 Chialisp 的已编译最小版本，尽管编译器可以将更高级别的 Chialisp 转换为已编译的 Chialisp 最小版本。查看更多相关信息[此处](/docs/high_level_lang)
+* **<abbr title="CLVM">CLVM</abbr>** —— CLVM 是 Chialisp 虚拟机，它是运行谜语和谜底的沙盒环境。CLVM 仅运行 Chialisp 的已编译最小版本，尽管编译器可以将更高级别的 Chialisp 转换为已编译的 Chialisp 最小版本。查看更多相关信息[此处](/docs/high_level_lang)。
 
 * **<abbr title="Aggregated Signature/AggSig">聚合签名/AggSig</abbr>** —— 聚合签名允许我们将多个签名压缩成一个聚合签名，这样如果我们知道公钥和值，我们就可以验证它是否存在于单个聚合中。这使用 BLS 非交互式聚合。
 
-* **<abbr title="Augmented Signatures">增强签名</abbr>** —— 增强签名需要在消息之前添加公钥，这意味着这些签名在聚合中是安全的，因为公钥不能专门为消息（流氓公钥）制作
+* **<abbr title="Augmented Signatures">增强签名</abbr>** —— 增强签名需要在消息之前添加公钥，这意味着这些签名在聚合中是安全的，因为公钥不能专门为消息（流氓公钥）制作。
 
-* **<abbr title="Op Constraints/Conditions">操作符约束/条件</abbr>** —— 谜语通过解决方案时返回条件。如果满足所有返回的条件，则交易有效。
+* **<abbr title="Op Constraints/Conditions">操作符约束/条件</abbr>** —— 谜语通过谜底时返回条件。如果满足所有返回的条件，则交易有效。
 
 * **<abbr title="Transaction Generator">交易生成器</abbr>** —— 存储在块中的 CLVM 程序，该程序运行包含的每个谜语和谜底，并返回作为结果输出的所有条件的聚合。当全节点验证区块链时，它们会运行交易生成器并将所有支出验证为一笔大额支出。
 
@@ -67,8 +67,7 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **<abbr title="Delegated Puzzle">委托谜语</abbr>** —— 作为参数传递给另一个谜语的谜语，用于生成传递给的谜语的最终输出条件。只要他们首先满足其他一些标准，这用于最终控制如何将硬币花费给求解器。
 
-* **<abbr title="Singleton">单例硬币</abbr>** —— 单例硬币是一种可验证独一无二的硬币。与 NFT 类似（但比 NFT 更强大），如果单例被销毁，则无法复制、复制或重新创建它。
-这是 DID、NFT 或池化协议等事物的常见外部谜语。
+* **<abbr title="Singleton">单例硬币</abbr>** —— 单例硬币是一种可验证独一无二的硬币。与 NFT 类似（但比 NFT 更强大），如果单例被销毁，则无法复制、复制或重新创建它。这是 DID、NFT 或池化协议等事物的常见外部谜语。
 
 * **<abbr title="Pooling Protocol">池化协议</abbr>** —— 网络协议和 Chialisp 谜语的统称，可在 Chia 网络上实现池化。您可以在[此处](/docs/puzzles/pooling) 查看 Chialisp 部分的细目分类。
 
