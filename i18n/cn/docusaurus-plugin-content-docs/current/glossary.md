@@ -21,7 +21,7 @@ If you are familiar with how Bitcoin transactions work, a lot of this will be fa
 
 * **<abbr title="Unspent Coin/Coin Set">未使用硬币/硬币集合</abbr>（UTXO/未使用交易输出）** —— 一种已经创建但尚未使用的硬币，因此正在存储价值。Unspents (UTXO set/unspent transaction output set) - 这是网络上所有未花费硬币的集合。它用于检查交易是否有效，充当谜题的查找。它将硬币 ID 映射到区块高度中的生日。交易必须包含用于计算 ID 的信息的揭示，以便它可以被验证，因为未花费的不包含该信息，只有可用于验证它的散列。
 
-* **<abbr title="Coin ID/CoinName">硬币ID/硬币名称</abbr>（TXO ID/交易输出 ID）** —— Chia 中硬币的 ID 是通过散列主要输入 ID、拼图散列和按该顺序连接的金额生成的。这与比特币非常不同，比特币使用更多数据来形成 TXO ID，限制了智能币的功能。 （另见：[SegWit](https://en.wikipedia.org/wiki/SegWit)）
+* **<abbr title="Coin ID/CoinName">硬币ID/硬币名称</abbr>（TXO ID/交易输出 ID）** —— Chia 中硬币的 ID 是通过哈希主要输入 ID、谜语哈希和按该顺序连接的金额生成的。这与比特币非常不同，比特币使用更多数据来形成 TXO ID，限制了智能币的功能。 （另见：[SegWit](https://en.wikipedia.org/wiki/SegWit)）
 
 * **<abbr title="Coin Record">硬币记录</abbr>** —— 硬币实际存储在区块链数据库中并通过全节点的 RPC API 返回的格式。包含有关硬币的基本信息以及有关何时确认和花费的信息。
 
