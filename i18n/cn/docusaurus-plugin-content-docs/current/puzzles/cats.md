@@ -22,21 +22,21 @@ title: Chia 资产代币（Cats）
 ## CAT 简介
 
 **Chia 资产代币 (CAT)** 是由 XCH 发行的可替代代币。
-CAT1 标准是第一个（也是迄今为止唯一的）CAT 标准。 CAT1 是截至 2021 年 11 月 16 日的标准草案。经过 Chia 社区的评论期后，CAT1 将最终确定。这可能包括附加功能，并可能导致对现有 CAT 的一些重大更改。有关本文档中使用的命名约定的更多信息，请参见 [此处](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html "Blog entry explaining CAT1 naming conventions")。
+CAT1 标准是第一个（也是迄今为止唯一的）CAT 标准。 CAT1 是截至 2021 年 11 月 16 日的标准草案。经过 Chia 社区的评论期后，CAT1 将最终确定。这可能包括附加功能，并可能导致对现有 CAT 的一些重大更改。有关本文档中使用的命名约定的更多信息，请参见[此处](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html "Blog entry explaining CAT1 naming conventions")。
 
 >**提醒：**
 >
->>**同质代币**可以拆分或合并在一起。
+>>**同质化代币**可以拆分或合并在一起。
 >>它们也可以代替等值的令牌。
 >>一些常见的例子包括黄金、石油和美元。
 >
->>**不可替代的代币**，另一方面，是不可分割的，不能合并。
+>>**非同质化代币**，另一方面，是不可分割的，不能合并。
 >>它们是独一无二的，因此无法替代。
 >>一些常见的例子包括汽车、棒球卡和衣帽间门票。
 
-CAT 具有被“标记”的特性，使它们无法作为常规 XCH 使用。但是，通常可以稍后将 CAT“融化”回 XCH。 CAT 通常用作积分或代币——有点像赌场筹码。
+CAT 具有被“标记”的特性，使它们无法作为常规 XCH 使用。但是，通常可以稍后将 CAT“熔化”回 XCH。 CAT 通常用作积分或代币——有点像赌场筹码。
 
-**所有 CATs** 共享的 chialisp 代码是 [here](https://github.com/Chia-Network/chia-blockchain/blob/protocol_and_cats_rebased/chia/wallet/puzzles/cat.clvm "cat.clvm - the source code that all CATs share")。如果不遵循这种谜语格式，钱包将无法将代币识别为 CAT。
+**所有 CAT** 共享的 chialisp 代码在[这里](https://github.com/Chia-Network/chia-blockchain/blob/protocol_and_cats_rebased/chia/wallet/puzzles/cat.clvm "cat.clvm - the source code that all CATs share")。如果不遵循这种谜语格式，钱包将无法将代币识别为 CAT。
 
 上面链接的代码的全部目的是确保特定 CAT 的供应永远不会改变，除非遵循一组特定的“发行规则”。每个 CAT 都有自己独特的发行规则，**这是不同类型 CAT 之间的唯一区别**。这些发行规则采用遵循特定结构的任意 Chialisp 程序的形式。我们称该程序为**代币和资产发行限制（TAIL）**。
 
@@ -138,7 +138,7 @@ We will cover the TAIL program in more detail later, but first let's cover what 
   * 我的血统证明 —— （可选）证明 CAT 的父代与 CAT 属于同一类型
   * 我的 TAIL 谜底 ——（可选）传入 TAIL 程序的参数列表
   * 我的硬币信息
-  * CAT Mod 哈希 —— 在任何东西被咖喱之前的 CAT 哈希
+  * CAT Mod 哈希 —— 在任何东西被柯里化之前的 CAT 哈希
   * CAT Mod 哈希的哈希 —— CAT Mod 哈希的哈希
   * CAT TAIL 程序哈希 —— CAT 中的 TAIL 程序的哈希值
 
@@ -211,7 +211,7 @@ CAT 硬币也被赋予了所有其他硬币的 Delta 的总和，该总和必须
 )
 ```
 
-其中`+`表示字节的连接，并且公告断言采用公告创建者的 ID 和消息的哈希。
+其中 `+` 表示字节的连接，并且公告断言采用公告创建者的 ID 和消息的哈希。
 
 为了创建 `next_coin_id`，我们用当前硬币的 CAT 信息包装下一个硬币的内部谜语。 这保证 next_coin_id 是与当前硬币类型相同的 CAT。
 
@@ -254,7 +254,7 @@ Because both coins follow the same CAT module code, they must comply with the sa
 为了解决这些情况，TAIL 程序可能会批准误报 CAT 硬币的 Delta 特定数量，称为**额外的 Delta**。 这是传递给 TAIL 程序的参数之一。
 
 有一些规则可以确保不会铸造或淘汰额外的硬币：
-   * 如果额外的 Delta 不是 `0`，则 TAIL 程序将被强制运行。 它必须评估是否允许额外的增量，或失败与`(x)` 调用。
+   * 如果额外的 Delta 不是 `0`，则 TAIL 程序将被强制运行。 它必须评估是否允许额外的增量，或失败与 `(x)` 调用。
    * 如果方案中的额外的 Delta 值没有导致 TAIL 程序失败，那么它会自动添加到报告的 Delta 中，用于通告环中。
    * 如果 TAIL 程序未显示且额外的 Delta 不为 `0`，则谜语将失败。
 
@@ -276,7 +276,7 @@ There are a few rules to ensure that extra coins are not minted or retired:
 
 </details>
 
-## 代币和资产发行限制器（TAIL）计划
+## 代币和资产发行限制（TAIL）计划
 
 TAIL 程序功能强大且灵活。它可以控制和访问许多事物。这给了程序员很大的控制权，但也有很大的责任。
 
@@ -287,18 +287,18 @@ TAIL 程序功能强大且灵活。它可以控制和访问许多事物。这给
 TAIL 应遵循所有负责锁定资金的 Chialisp 程序应遵循的所有常规安全规则。
 
 必须将几个参数传递给 TAIL 的谜底：
-  * 真相 —— 这些被组合在一起，如上所述
-  * parent_is_cat —— 指示父项是否已被验证为与此 CAT 类型相同的 CAT 的标志
-  * lineage_proof —— （可选）证明父代是与此 CAT 相同类型的 CAT
-  * delta —— 额外的 Delta 值，如上所述
-  * inner_conditions —— 内部谜语返回的条件
-  * tail_solution —— （可选）不透明参数列表
+  * 真相 —— 这些被组合在一起，如上所述。
+  * parent_is_cat —— 指示父项是否已被验证为与此 CAT 类型相同的 CAT 的标志。
+  * lineage_proof —— （可选）证明父代是与此 CAT 相同类型的 CAT。
+  * delta —— 额外的 Delta 值，如上所述。
+  * inner_conditions —— 内部谜语返回的条件。
+  * tail_solution —— （可选）不透明参数列表。
 
-TAIL虽然强大，但是每次花完币都**不一定**运行。如果在内部谜语中创建了“魔法”条件，则运行 TAIL。需要这个“魔法”条件来防止可以花费 TAIL 的人拦截花费并违背花费者的意愿改变它。
+TAIL 虽然强大，但是每次花完币都**不一定**运行。如果在内部谜语中创建了“魔法”条件，则运行 TAIL。需要这个“魔法”条件来防止可以花费 TAIL 的人拦截花费并违背花费者的意愿改变它。
 
 TAIL 应认真检查以下事项：
   * 额外的 Delta 是否铸造或淘汰任何硬币，如果是，我是否同意？
-  * 如果这枚硬币的父母不是与我相同类型的 CAT，我是否同意？
+  * 如果这枚硬币的父代不是与我相同类型的 CAT，我是否同意？
 
 <details>
 <summary>原文参考</summary>
@@ -335,9 +335,9 @@ The TAIL should check diligently for the following things:
 
 在 Chia 中，发行人创建了一个 TAIL，它存在于所有相同类型的 CAT 中，包括那些已经分发的 CAT。但是，发行人无权使用他们不拥有的硬币。 TAIL 只能作为 CAT 支出的最后一步运行，并且 CAT 的所有者（而不是发行人）负责提供其解决方案。这意味着只有所有者才能运行 TAIL。因此，CAT 的所有者是唯一有能力完成支出的人。
 
-这一决定为用户增加了一些权力下放。它还增加了一些复杂性。创建结构良好的 TAIL 的重要性怎么强调都不为过。一旦您分发了 CAT，就无法再更改整个代币供应中的 TAIL。 TAIL 永远被锁定在同一组规则中。改变 TAIL 无异于更换流通中的实物现金。您将不得不提供新代币的交换，并最终弃用旧代币，即使有些人仍然持有它。
+这一决定为用户增加了一些权力下放。它还增加了一些复杂性。创建结构良好的 TAIL 的重要性怎么强调都不为过。一旦您分发了 CAT，就无法再更改整个代币供应中的 TAIL。TAIL 永远被锁定在同一组规则中。改变 TAIL 无异于更换流通中的实物现金。您将不得不提供新代币的交换，并最终弃用旧代币，即使有些人仍然持有它。
 
-这也意味着，如果这组规则遭到破坏，人们可能会恶意地铸造或淘汰 CAT。除了通过上述过程之外，没有简单的方法可以“修补”TAIL，这显然最好避免。
+这也意味着，如果这组规则遭到破坏，人们可能会恶意地铸造或淘汰 CAT。除了通过上述过程之外，没有简单的方法可以“修补” TAIL，这显然最好避免。
 
 <details>
 <summary>原文参考</summary>
@@ -362,7 +362,7 @@ CAT1 标准目前包括三个示例 TAIL，但可能还有更多示例。
 
   我们目前发行 CAT 的默认方式是使用只允许从特定硬币 ID 创建硬币的 TAIL。在 Chia 中，硬币只能使用一次，因此这会导致一次性铸造 CAT。发行后，CAT 将永远不会增加或减少，也没有人能够再次运行相同的 TAIL。
 
-* [带签名的一切](https://github.com/Chia-Network/chia-blockchain/blob/protocol_and_cats_rebased/chia/wallet/puzzles/everything_with_signature.clvm "Chialisp code for the Everything With Signature TAIL")
+* [一切都有签名](https://github.com/Chia-Network/chia-blockchain/blob/protocol_and_cats_rebased/chia/wallet/puzzles/everything_with_signature.clvm "Chialisp code for the Everything With Signature TAIL")
 
   与上面的 TAIL 截然相反的是，创建者可以为所欲为，只要他们提供公钥的签名即可。这个密钥被压缩到 TAIL 中，它返回一个单一的 AGG_SIG_ME 条件，要求一个匹配的签名。如果创建者可以提供该签名，则支出通过并且任何违反的供应规则都将被忽略。
 
@@ -370,12 +370,12 @@ CAT1 标准目前包括三个示例 TAIL，但可能还有更多示例。
 
 * [委托 TAIL](https://github.com/Chia-Network/chia-blockchain/blob/protocol_and_cats_rebased/chia/wallet/puzzles/delegated_genesis_checker.clvm "Chialisp code for the Delegated TAIL")
 
-  这是我们目前拥有的安全性和灵活性的最佳平衡。 委托 TAIL 类似于 `Everything With Signature` 示例，不同之处在于它不需要来自特定硬币的签名，而是需要来自特定谜语哈希的签名。当谜语哈希被签名后，创建者可以运行该谜语来代替 TAIL。
+  这是我们目前拥有的安全性和灵活性的最佳平衡。 委托 TAIL 类似于 `一切都有签名` 示例，不同之处在于它不需要来自特定硬币的签名，而是需要来自特定谜语哈希的签名。当谜语哈希被签名后，创建者可以运行该谜语来代替 TAIL。
   
   这个 TAIL 允许创建者创建他们可以与 CAT 一起使用的新 TAIL，即使这些 TAIL 在初始发布期间不存在！例如，创建者可以创建：
   
-  * 一次铸造
-  * 铸造新硬币的 DID
+  * 一次铸造。
+  * 铸造新硬币的 DID。
   * 他们想要的任何其他东西！
   
   请注意，我们使用 AGG_SIG_UNSAFE 以使此签名适用于所有硬币。创建者可以发布有效签名，允许 CAT 的任何所有者自行运行 TAIL。这很有用的一种情况是在赎回计划中——你希望允许人们将他们的 CAT 融入 XCH，只要他们在这样做时遵循某些规则。
@@ -435,7 +435,7 @@ XCH 和 CAT 的面值都是由市场驱动的——无论有人愿意为它们�
 
 如果 CAT 在财务上取得一定程度的成功，其面值将大于其熔化价值，就像 1 万亿美元的硬币将比铸造它的金属更有价值。例如：
 
-* 一个模因令牌可以交易 XCH 的百万分之一，或 1,000,000 mojo。代币价值很少，但它的价值仍然是其 1000 mojo 的熔化价值的 1000 倍。
+* 一个模因代币可以交易 XCH 的百万分之一，或 1,000,000 mojo。代币价值很少，但它的价值仍然是其 1000 mojo 的熔化价值的 1000 倍。
 * 美元支持的稳定币面值为 1 美元。它的熔化值为 1000 mojo。
 * 一个非常成功的代币甚至可以卖出一个以上的 XCH——没有规则阻止这种情况发生。它的熔化值仍然是 1000 mojo。
 
@@ -445,7 +445,7 @@ XCH 和 CAT 的面值都是由市场驱动的——无论有人愿意为它们�
 
 重要的是要记住，CAT 的 TAIL（以及其他任何东西）决定了退休的规则，_if_它完全允许退休。例如，我们的单铸 TAIL 只适用于特定的硬币，因此它不允许退休。使用这个 TAIL 的 CAT 永远不会被融化，无论它们的面值有多小。
 
-我们委托的 TAIL 完全取决于 CAT 的创建者是否 - 以及如何 - 退休。
+我们委托的 TAIL 完全取决于 CAT 的创建者是否 —— 以及如何 —— 退休。
 
 除了我们预先打包的示例之外，具有广泛功能的 TAIL 也是可能的。为了仅说明此功能的一部分，让我们考虑四个潜在的退休原因，以及谁可以退休代币：
 
