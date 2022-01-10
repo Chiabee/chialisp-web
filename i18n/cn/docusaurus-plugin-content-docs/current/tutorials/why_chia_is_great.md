@@ -8,7 +8,7 @@ sidebar_label: Chia 为何如此优秀
 
 欢迎来到 Chialisp 教程系列。
 
-该视频是对 Chia 中做出的设计决策的高级概述，这些决策有助于某些金融用例的优势。
+该视频是对 Chia 中做出的设计决策的高级概述，这些决策有助于增强某些金融用例的优势。
 
 <details>
 <summary>原文参考</summary>
