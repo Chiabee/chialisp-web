@@ -64,9 +64,9 @@ If password is correct, the puzzle will create a new coin with 2 mojos and lock 
 
 有多种方法可以获得自定义谜语的编译版本。
 
-### 使用 [clvm_tools](https://github.com/Chia-Network/clvm_tools)（官方）
+### 使用 [clvm 工具(https://github.com/Chia-Network/clvm_tools)（官方）
 
-您可以使用 clvm_tools 存储库（包含在官方 Chia 存储库中）从终端编译自定义拼图。您需要做的就是使用 `run` 命令，并将您的谜题作为参数提供。
+您可以使用 clvm_tools 存储库（包含在官方 Chia 存储库中）从终端编译自定义谜语。您需要做的就是使用 `run` 命令，并将您的谜语作为参数提供。
 
 ```bash
 run '(mod (password new_puzhash amount)
@@ -79,7 +79,7 @@ run '(mod (password new_puzhash amount)
 )'
 ```
 
-结果在 `(a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824)) (q 4 (c 2 (c 11 (c 23 ()))) ()) (q 8)) 1) (c (q . 51) 1))`.
+结果在 `(a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824)) (q 4 (c 2 (c 11 (c 23 ()))) ()) (q 8)) 1) (c (q . 51) 1))`。
 
 ### 使用 [Chialisp 网络工具](https://clisp.surrealdev.com/)（非官方）
 
@@ -116,7 +116,7 @@ Paste your custom puzzle into the text area and hit **Compile**. The compiled ve
 
 ## 从谜语中获取谜语哈希
 
-### 使用 [clvm_工具](https://github.com/Chia-Network/clvm_tools)
+### 使用 [clvm 工具](https://github.com/Chia-Network/clvm_tools)
 
 您可以使用官方 clvm_tools 存储库中包含的 `opc -H <compiled_puzzle>` 命令获取 Chialisp 谜语的哈希值。
 
@@ -133,7 +133,7 @@ opc -H '(a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c
 ff02ffff01ff02ffff03ffff09ffff0bff0580ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b982480ffff01ff04ffff04ff02ffff04ff0bffff04ff17ff80808080ff8080ffff01ff088080ff0180ffff04ffff0133ff018080
 ```
 
-正如您从该响应的第一行中看到的，我们自定义谜语的谜语哈希是`0x4843c869bba5f65aa1e806cd372dae5668ca3b69640d067e86837ca96b324e71`
+正如您从该响应的第一行中看到的，我们自定义谜语的谜语哈希是 `0x4843c869bba5f65aa1e806cd372dae5668ca3b69640d067e86837ca96b324e71`。
 
 ### 使用 Chialisp
 
@@ -154,7 +154,7 @@ ff02ffff01ff02ffff03ffff09ffff0bff0580ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b
 )
 ```
 
-然后，这个谜语的谜底需要在第一个位置包含我们想要散列的已编译谜语（用括号将编译后的谜题包裹起来，并将其作为谜底提供）。
+然后，这个谜语的谜底需要在第一个位置包含我们想要哈希的已编译谜语（用括号将编译后的谜语包裹起来，并将其作为谜底提供）。
 
 **密码锁定硬币的示例谜底：**
 `((a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824)) (q 4 (c 2 (c 11 (c 23 ()))) ()) (q 8)) 1) (c (q . 51) 1)))`
@@ -214,7 +214,7 @@ The resulting hash for this example puzzle is again `0x4843c869bba5f65aa1e806cd3
 
 您可以将谜语哈希转换为接收地址，反之亦然。 地址只是一个编码的谜语哈希。 由于谜语哈希匹配特定谜语，这也意味着接收地址匹配特定谜语。
 
-您可以使用 [Chia explorer 在线工具](https://www.chiaexplorer.com/tools/address-puzzlehash-converter) 进行谜语哈希与接收地址的转换。谜语哈希被编码为带有 xch 前缀的 bech32m 格式以形成接收地址。 谜语哈希 `0x4843c869bba5f65aa1e806cd372dae5668ca3b69640d067e86837ca96b324e71`的接收地址是 `xch1fppus6dm5hm94g0gqmxnwtdw2e5v5wmfvsxsvl5xsd72j6ejfecsdnkf2e`。
+您可以使用 [Chia 区块链浏览器在线工具](https://www.chiaexplorer.com/tools/address-puzzlehash-converter) 进行谜语哈希与接收地址的转换。谜语哈希被编码为带有 xch 前缀的 bech32m 格式以形成接收地址。 谜语哈希 `0x4843c869bba5f65aa1e806cd372dae5668ca3b69640d067e86837ca96b324e71`的接收地址是 `xch1fppus6dm5hm94g0gqmxnwtdw2e5v5wmfvsxsvl5xsd72j6ejfecsdnkf2e`。
 
 <details>
 <summary>原文参考</summary>
