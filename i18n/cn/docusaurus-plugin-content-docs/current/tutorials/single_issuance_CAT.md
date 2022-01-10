@@ -6,7 +6,7 @@ sidebar_label: 单次签发 CAT
 
 > Single Issuance CAT
 
-在本视频中，Matt Hauff（又名 Keybase 上的 quexington）将引导您完成 Chia 资产令牌 (CAT) 的一次性发行。
+在本视频中，Matt Hauff（又名 Keybase 上的 quexington）将引导您完成 Chia 资产代币 (CAT) 的一次性发行。
 
 <details>
 <summary>原文参考</summary>
