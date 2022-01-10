@@ -6,7 +6,7 @@ sidebar_label: 多次签发 CAT
 
 > Multiple Issuance CAT
 
-在本视频中，Matt Hauff（又名 Keybase 上的 quexington）将引导您创建多重发行的 Chia 资产令牌 (CAT)。在观看此视频之前，请先观看[单次签发 CAT 视频](https://chialisp.com/docs/tutorials/single_issuance_CAT "Video tutorial to create a single-issuance CAT")。
+在本视频中，Matt Hauff（又名 Keybase 上的 quexington）将引导您创建多重发行的 Chia 资产代币 (CAT)。在观看此视频之前，请先观看[单次签发 CAT 视频](https://chialisp.com/docs/tutorials/single_issuance_CAT "Video tutorial to create a single-issuance CAT")。
 
 <details>
 <summary>原文参考</summary>
