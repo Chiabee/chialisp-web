@@ -6,15 +6,15 @@ sidebar_label: Chialisp 编程
 
 > Programming in Chialisp
 
-该视频是使用基本 Chialisp 命令将歌词打印到 [经典歌曲](https://en.wikipedia.org/wiki/99_Bottles_of_Beer) 的区块链版本的练习。
+该视频是使用基本 Chialisp 命令将歌词打印到[经典歌曲](https://en.wikipedia.org/wiki/99_Bottles_of_Beer)的区块链版本的练习。
 
 您将学习 Chialisp 基础知识，包括：
 * 打印
 * 调用函数
 * 使用模块
-* 遍历数据
+* 循环数据
 * [cons](https://en.wikipedia.org/wiki/Cons)
-* 建筑清单
+* 建立清单
 * 递归
 
 <details>
