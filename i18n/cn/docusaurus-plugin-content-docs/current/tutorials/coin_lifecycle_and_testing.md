@@ -10,7 +10,7 @@ sidebar_label: 硬币生命周期和测试
 
 如果您尚未观看[设置环境的视频](/docs/tutorials/tools_and_setup)，请先观看。
 
-您可以在[此处](/files/Piggybank_Example.zip) 下载存钱罐硬币示例文件。
+您可以在[此处](/files/Piggybank_Example.zip)下载存钱罐硬币示例文件。
 
 <details>
 <summary>原文参考</summary>
