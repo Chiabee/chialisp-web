@@ -14,7 +14,7 @@ sidebar_label: Chia 应用程序的结构
 
         CHIA                        Your Code
                  |   +--------------------+       +----------+
-    Node RPC <---|-> | Specialized Wallet |<----->| Database |
+    节点 RPC <---|-> | Specialized Wallet |<----->| Database |
        ^         |   +--------------------+       +----------+
        |         |       ^         ^
        |         |       |         |
