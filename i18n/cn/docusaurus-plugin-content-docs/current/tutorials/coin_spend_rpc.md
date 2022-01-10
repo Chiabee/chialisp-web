@@ -6,15 +6,15 @@ sidebar_label: 使用 RPC 花费一个硬币
 
 > How to spend a coin using an RPC call
 
-本教程教您如何使用 RPC 调用在任何谜题上花费硬币。我们将使用[如何使用自定义拼图锁定硬币](custom_puzzle_lock) 中的密码锁定硬币谜语作为示例。
+本教程教您如何使用 RPC 调用在任何谜语上花费硬币。我们将使用[如何使用自定义谜语锁定硬币](custom_puzzle_lock)中的密码锁定硬币谜语作为示例。
 
 ## 获取您的硬币信息（金额、谜语哈希和父信息）
 
 花费硬币的 RPC 调用要求您指定要花费的硬币。对于唯一标识，您需要硬币的金额、谜语哈希和父信息。这三个信息也足以计算硬币的 ID。
 
-### 使用 Chia explorer（通过谜语哈希/接收地址）
+### 使用 Chia 区块链浏览器（通过谜语哈希/接收地址）
 
-如果您知道您正在寻找的硬币的谜语哈希或接收地址，您可以[使用 Chia explorer 搜索](https://www.chiaexplorer.com/blockchain/search)。 Chia explorer无法使用拼图hash搜索，所以如果你有谜语哈希，首先需要使用 [Chia explorer 的工具](https://www.chiaexplorer.com/tools/address-puzzlehash-converter)转换为接收地址。
+如果您知道您正在寻找的硬币的谜语哈希或接收地址，您可以[使用 Chia 区块链浏览器搜索](https://www.chiaexplorer.com/blockchain/search)。 Chia 区块链浏览器无法使用谜语哈希搜索，所以如果你有谜语哈希，首先需要使用 [Chia 区块链浏览器的工具](https://www.chiaexplorer.com/tools/address-puzzlehash-converter)转换为接收地址。
 请记住，接收地址只是编码的谜语哈希，并且仍会引用您正在寻找的谜语。
 
 当您搜索接收地址时，您会看到所有被相应谜语锁定的硬币。选择您要花费的那一项。这将为您提供硬币的金额、谜语哈希和父信息。
@@ -49,11 +49,11 @@ When you search for a receive address, you'll see all coins locked by the corres
 
 **序列化的谜语：** `0xff02ffff01ff02ffff03ffff09ffff0bff0580ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b982480ffff01ff04ffff04ff02ffff04ff0bffff04ff17ff80808080ff8080ffff01ff088080ff0180ffff04ffff0133ff018080`
 
-**谜底：** `(hello 0x5f5767744f91c1c326d927a63d9b34fa7035c10e3eb838c44e3afe127c1b7675 2)` (as valid Chialisp program `(q . (hello 0x5f5767744f91c1c326d927a63d9b34fa7035c10e3eb838c44e3afe127c1b7675 2))`)
+**谜底：** `(hello 0x5f5767744f91c1c326d927a63d9b34fa7035c10e3eb838c44e3afe127c1b7675 2)` （作为有效的 Chialisp 程序 `(q . (hello 0x5f5767744f91c1c326d927a63d9b34fa7035c10e3eb838c44e3afe127c1b7675 2))`）
 
 **序列化的谜底：** `0xff8568656c6c6fffa05f5767744f91c1c326d927a63d9b34fa7035c10e3eb838c44e3afe127c1b7675ff0280`
 
-_警告：您必须更改此解决方案并将目标谜语哈希替换为您自己的哈希才能取回您的硬币_
+_警告：您必须更改此谜底并将目标谜语哈希替换为您自己的哈希才能取回您的硬币。_
 
 ### 使用 [clvm_tools](https://github.com/Chia-Network/clvm_tools) 进行序列化
 
@@ -70,11 +70,11 @@ opc -H '(a (q 2 (i (= (sha256 5) (q . 0x2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c
 ff02ffff01ff02ffff03ffff09ffff0bff0580ffff01a02cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b982480ffff01ff04ffff04ff02ffff04ff0bffff04ff17ff80808080ff8080ffff01ff088080ff0180ffff04ffff0133ff018080
 ```
 
-### 使用 [Quexington 的 Chialisp 开发工具](https://github.com/Quexington/chialisp_dev_utility) 进行序列化 
+### 使用 [Quexington 的 Chialisp 开发实用程序](https://github.com/Quexington/chialisp_dev_utility) 进行序列化 
 
 按照存储库的 README 设置新项目并序列化谜语。
 
-简而言之：将您编译的谜语/谜底粘贴到您的工作文件中并调用“chialisp build”。这将生成带有您的谜语/谜底的序列化版本的 `.hex` 文件（取决于您的工作文件）。
+简而言之：将您编译的谜语/谜底粘贴到您的工作文件中并调用 `chialisp build`。这将生成带有您的谜语/谜底的序列化版本的 `.hex` 文件（取决于您的工作文件）。
 
 ### 使用 [Chialisp Web 工具](https://clisp.surrealdev.com/) 进行序列化
 
@@ -148,11 +148,11 @@ curl --insecure --cert ~/.chia/mainnet/config/ssl/full_node/private_full_node.cr
         }}' -H "Content-Type: application/json" -X POST https://localhost:8555/push_tx
 ```
 
-`spend_bundle` 对象包含一个 `aggregated_signature`，我们稍后可以在谜语中宣称，以及 `coin_solutions`：我们花费的所有硬币的对象列表。 如果您的谜语不需要 `aggregated_signature`，请使用 0xc 后跟 191 个零（如上例所示）。 但是，值得注意的是，不使用签名的谜语通常是不安全的，应仅用于测试目的。
+`spend_bundle` 对象包含一个 `aggregated_signature`，我们稍后可以在谜语中宣称，以及 `coin_solutions`：我们花费的所有硬币的对象列表。如果您的谜语不需要 `aggregated_signature`，请使用 0xc 后跟 191 个零（如上例所示）。但是，值得注意的是，不使用签名的谜语通常是不安全的，应仅用于测试目的。
 
-`coin_solution` 包含有关它正在花费的 `coin` 的信息（`amount`、`parent_coin_info` 和 `puzzle_hash`）。 它还包括一个序列化的谜语作为 `puzzle_reveal` 和序列化的“解决方案”。
+`硬币谜底` 包含有关它正在花费的 `硬币` 的信息（`金额`、`父代硬币信息` 和 `谜语哈希`）。 它还包括一个序列化的谜语作为 `谜语揭示` 和序列化的 `谜底`。
 
-如果您正确填写所有信息并发送此请求，您的硬币将根据其提供的谜底案花费，并且应从 RPC 返回响应 `{"status": "SUCCESS", "success": true}` 称呼。
+如果您正确填写所有信息并发送此请求，您的硬币将根据其提供的谜底花费，并且应从 RPC 返回响应 `{"status": "SUCCESS", "success": true}` 称呼。
 
 如果您的谜语需要聚合签名，请继续关注更多教程。
 
