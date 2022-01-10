@@ -2,14 +2,14 @@
 
 > CAT creation tutorial (Linux/MacOS)
 
-本教程用于在 Linux 和 MacOS 上创建 Chia Asset Tokens (CATS)。我们还提供了一个版本的 [适用于 Windows 用户的教程](https://www.chialisp.com/docs/tutorials/CAT_Launch_Process_Windows "Chia Asset Token tutorial for Windows users")。
+本教程用于在 Linux 和 MacOS 上创建 Chia 资产代币 (CATS)。我们还提供了[适用于 Windows 用户的教程](https://www.chialisp.com/docs/tutorials/CAT_Launch_Process_Windows "Chia Asset Token tutorial for Windows users")。
 
 目录：
 
 * [介绍](#介绍)
 * [CAT 发放粒度](#cat-发放粒度)
 * [设置 Chia 环境](#设置-chia-环境)
-* [创建一个单一的 CAT](#创建一个单一的-cat)
+* [创建单铸造 CAT](#创建单铸造-cat)
 * [创建多铸造 CAT](#创建多铸造-cat)
 * [准备主网](#准备主网)
 * [生成安全密钥对](#生成安全密钥对)
@@ -34,7 +34,7 @@ This tutorial is for creating Chia Asset Tokens (CATS) on Linux and MacOS. We al
 
 * 在同一台计算机上运行您的全节点和轻钱包。
 * 请勿使用可执行安装程序安装本教程的轻钱包。相反，从源代码安装，因为本文档将向您展示如何操作。这是因为可执行安装程序将覆盖您的完整节点安装。
-* 为您发出的每个 CAT 生成一个新的公钥/私钥对。这个密钥对应该用于发布一个特定的 CAT **，没有别的**。在发出 CAT 时，它也应该是您计算机上唯一的密钥对。
+* 为您发出的每个 CAT 生成一个新的公钥/私钥对。这个密钥对应该用于发布一个特定的 CAT，**没有别的**。在发出 CAT 时，它也应该是您计算机上唯一的密钥对。
 * 请勿尝试在活跃的农业机器上测试您的 CAT 创作。
 * 在将您的 CAT 发布到主网之前，在测试网上彻底测试。
 
@@ -67,11 +67,11 @@ For any questions regarding this tutorial, head over to the #chialisp channel on
 
 CAT 面额，以及铸造和熔化背后的规则，可能需要一些时间来适应。在您签发 CAT 之前，请记住以下几点：
 
-* 大多数 Chia 钱包选择在 XCH 中显示其价值。然而，这纯粹是一种装饰性的选择，因为 Chia 的区块链只知道 mojos。一个 XCH 等于一万亿（1,000,000,000,000）个魔力。
+* 大多数 Chia 钱包选择在 XCH 中显示其价值。然而，这纯粹是一种装饰性的选择，因为 Chia 的区块链只知道 mojos。一个 XCH 等于一万亿（1,000,000,000,000）个 mojos。
 * 同样，默认决定将 1 CAT 映射到 1000 XCH mojo。默认情况下，该比率对于所有 CAT 都是相同的。
-* 可以将特定 CAT 的 CAT:mojo 比率设置为 1:1000 以外的值，但这样做可能会对令牌之间的互操作性产生负面影响。我们建议您使用默认设置，除非您有充分的理由不这样做。
+* 可以将特定 CAT 的 CAT:mojo 比率设置为 1:1000 以外的值，但这样做可能会对代币之间的互操作性产生负面影响。我们建议您使用默认设置，除非您有充分的理由不这样做。
 * 因此，单个代币的默认熔炼值为 1000 mojo。无论代币的面值或流通量如何，这都是正确的。
-* 代币的面值与其熔值不一定相关，更不用说匹配了。
+* 代币的面值与其熔炼值不一定相关，更不用说匹配了。
 
 使用一个 XCH，您可以铸造 10 亿个 CAT。这些代币的面值可以是零，也可以是多个 XCH，或者介于两者之间。这个价值是由市场决定的——无论有人愿意为它付出什么，它都是值得的。除了它们的 1000-mojo 熔化值外，代币的价值与基础 XCH 无关。
 
@@ -114,7 +114,7 @@ These concepts are discussed in greater detail in our [CAT1 standard](https://ch
 
 0. 通过运行 `python3 version` 确保你安装了 3.7 到 3.9之 间的 Python 版本。
 
-1. 从 GitHub 克隆 `protocol_and_cats_rebased`分支并安装轻钱包：
+1. 从 GitHub 克隆 `protocol_and_cats_rebased` 分支并安装轻钱包：
 
     a. 创建一个名为 `protocol_and_cats_rebased` 的新文件夹并 cd 到它。
   
@@ -138,7 +138,7 @@ These concepts are discussed in greater detail in our [CAT1 standard](https://ch
 
 2. 运行并同步轻钱包 GUI：
 
-    a. 在做任何其他事情之前，最好将 log_level 设置为 INFO。为此，请编辑“~/.chia/standalone_wallet/config/config.yaml”并将“log_level:”的值更改为 INFO。 （默认设置为警告。）
+    a. 在做任何其他事情之前，最好将 log_level 设置为 INFO。为此，请编辑 `~/.chia/standalone_wallet/config/config.yaml` 并将“log_level:”的值更改为 INFO。（默认设置为警告。）
     
     b. 运行 `cd chia-blockchain-gui`。
     
@@ -146,7 +146,7 @@ These concepts are discussed in greater detail in our [CAT1 standard](https://ch
 
     d. 如果您已经有一个“带有公共指纹的私钥”，请在 GUI 加载时选择它。否则，选择“创建新的私钥”。
 
-    e. “状态：正在同步”应该出现在 GUI 的右上角。几分钟后，这应该会更改为“状态：已同步”。这个过程不需要很长时间，因为轻钱包只请求和下载该特定钱包所需的块。
+    e. “Status: Syncing”应该出现在 GUI 的右上角。几分钟后，这应该会更改为“Status: Synced”。这个过程不需要很长时间，因为轻钱包只请求和下载该特定钱包所需的块。
 
    f. 如果您的总余额为 0，您可以从 [our faucet](https://testnet10-faucet.chia.net "testnet10 TXCH faucet") 获取一些 testnet10 TXCH。
 
@@ -158,7 +158,7 @@ These concepts are discussed in greater detail in our [CAT1 standard](https://ch
 
     a. 打开一个新的浏览器窗口并转到[我们的下载站点](https://download.chia.net/?prefix=testnet10/ "Testnet10 database download")。
     
-    b. 点击文件“blockchain_v1_testnet10.sqlite”下载。根据您的连接速度，这可能需要几分钟时间。
+    b. 点击文件 “blockchain_v1_testnet10.sqlite” 下载。根据您的连接速度，这可能需要几分钟时间。
     
     c. 将 .sqlite 文件移动到 db 文件夹，该文件夹位于 `~/.chia/standalone_wallet/db/`。
     
@@ -166,7 +166,7 @@ These concepts are discussed in greater detail in our [CAT1 standard](https://ch
 
     e. 如果“(venv)”没有出现在命令行的左侧，请运行 `. ./activate` 来激活你的虚拟环境。
     
-    f. 运行 `chia start node`。您应该会收到一条消息，说明 chia_full_node 已启动。如果您将 .sqlite 文件复制到您的 db 文件夹，您的节点应该会在几分钟内同步。您可以在 `~/.chia/standalone_wallet/log/debug.log` 中监控同步进度。
+    f. 运行 `chia start node`。您应该会收到一条消息，说明 chia_full_node 已启动。如果您将 .sqlite 文件复制到您的 db 文件夹，您的节点应该会在几分钟内同步。您可以在 “~/.chia/standalone_wallet/log/debug.log” 中监控同步进度。
 
     g. 当您的完整节点正在同步时，您可以继续下一步。
 
@@ -189,13 +189,13 @@ These concepts are discussed in greater detail in our [CAT1 standard](https://ch
 
 5. 你的环境应该已经设置好了，但让我们确保：
 
-    a. 运行`cats --help`。你应该得到一个使用说明。
+    a. 运行 `cats --help`。你应该得到一个使用说明。
     
-    b. 运行`cdv --help`。你应该得到另一个使用声明。
+    b. 运行 `cdv --help`。你应该得到另一个使用声明。
     
-    c. 运行`chia show -s`。您应该会收到以下消息：“当前区块链状态：完整节点已同步”，以及最新区块高度的列表。
+    c. 运行 `chia show -s`。您应该会收到以下消息：“Current Blockchain Status: Full Node Synced”，以及最新区块高度的列表。
 
-    d. 验证“状态：已同步”是否显示在独立 GUI 的右上角。
+    d. 验证 “Status: Synced” 是否显示在独立 GUI 的右上角。
 
     e. 确保你的钱包里有一些 TXCH。
 
@@ -311,9 +311,9 @@ Your environment is now set up and you are ready to start issuing CATs.
 
 </details>
 
-## 创建一个单一的 CAT
+## 创建单铸造 CAT
 
-如果您是视觉学习者，请参阅我们的 [创建单铸造 CAT 视频教程](https://chialisp.com/docs/tutorials/single_issuance_CAT "Single-mint CAT video tutorial")。
+如果您是视觉学习者，请参阅我们的[创建单铸造 CAT 视频教程](https://chialisp.com/docs/tutorials/single_issuance_CAT "Single-mint CAT video tutorial")。
 
 > 注意：本节将讨论代币资产发行限制器 (TAIL)，以及 CAT 的一些技术细节。要复习 CAT 和 TAIL，请查看我们的 [CAT1 标准](https://chialisp.com/docs/puzzles/cats "CAT1 standard documentation")。
 
@@ -325,7 +325,7 @@ Your environment is now set up and you are ready to start issuing CATs.
 
 1. 找一个要铸造的硬币，然后创建并推送一个新的花费组合：
 
-    a. 如果您不在那里，请更改为“CAT-admin-tool-main”文件夹。
+    a. 如果您不在那里，请更改为 “CAT-admin-tool-main” 文件夹。
 
     b. 弄清楚您要使用多少个 XCH mojo 来签发 CAT。默认情况下，每个 CAT 令牌将包含 1000 个 mojo，因此您应该将要铸造的令牌数量乘以 1000。例如，如果您想铸造 100 万个令牌，则需要 10 亿个 XCH mojo（的 1/1000 XCH）。
 
@@ -339,17 +339,17 @@ Your environment is now set up and you are ready to start issuing CATs.
 
     `cats --tail ./reference_tails/genesis_by_coin_id.clsp.hex --send-to <your receive address> --amount <XCH mojos> --as-bytes --curry 0x<Coin ID>`
 
-    该命令将输出两个值，&lt;Asset ID&gt;和&lt;花费组合&gt;. &lt;资产 ID&gt;将是此 CAT 的 ID，因此保存此值以备后用很重要。 &lt;花费组合&gt;是一大堵文字墙。这是您将以字节格式推送到区块链的实际交易。
+    该命令将输出两个值，&lt;Asset ID&gt;和&lt;花费组合&gt;. &lt;资产 ID&gt;将是此 CAT 的 ID，因此保存此值以备后用很重要。&lt;花费组合&gt;是一大堵文字墙。这是您将以字节格式推送到区块链的实际交易。
 
     f. 复制&lt;Spend Bundle&gt;的值并运行 `cdv rpc pushtx <Spend Bundle>`。您应该会收到消息 "status": "SUCCESS", "success": true。
 
-    恭喜！您已经签发了第一张 CAT。不过，你仍然需要告诉你的钱包。
+    恭喜！您已经签发了第一个 CAT。不过，你仍然需要告诉你的钱包。
 
 2. 为您的新 CAT 添加一个钱包 ID：
 
-    a. 切换到您的轻钱包 GUI。在几分钟内，您的余额应该会减少您刚刚铸造的魔力数量。但是，它不会出现在您的交易中。该功能尚未实现。
+    a. 切换到您的轻钱包 GUI。在几分钟内，您的余额应该会减少您刚刚铸造的 mojo 数量。但是，它不会出现在您的交易中。该功能尚未实现。
 
-    b. 现在您可以为您的新 CAT 添加钱包 ID。在左上角，单击“+ ADD TOKEN”，然后单击“+自定义”。在第一个文本字段中输入 CAT 的名称（可以是任何名称）。对于第二个字段，粘贴 &lt;Asset ID&gt;你从几步前保存。单击添加。
+    b. 现在您可以为您的新 CAT 添加钱包 ID。在左上角，单击“+ ADD TOKEN”，然后单击“+ Custom”。在第一个文本字段中输入 CAT 的名称（可以是任何名称）。对于第二个字段，粘贴 &lt;Asset ID&gt;你从几步前保存。单击添加。
 
     c. 您现在将被带到您的新 CAT 钱包。余额应显示您选择使用的 XCH mojo 数量除以 1000。这是因为 CAT mojo 默认情况下是 CAT 的千分之一。
     
@@ -357,7 +357,7 @@ Your environment is now set up and you are ready to start issuing CATs.
     
     d. 如果您看到总余额为 0，则需要刷新您的钱包。运行 `chia start wallet-only -r`。您现在应该看到正确的余额。这将在未来的版本中修复。
 
-    e. 您的猫的名字可能不会自动显示在您的钱包中。在这种情况下，单击“状态：已同步”旁边的三个点，然后单击“重命名钱包”。您可以将其重命名为其正确的名称。这将在未来的版本中自动完成。
+    e. 您的猫的名字可能不会自动显示在您的钱包中。在这种情况下，单击“Status: Synced”旁边的三个点，然后单击“Rename Wallet”。您可以将其重命名为其正确的名称。这将在未来的版本中自动完成。
 
 您现在可以在 GUI 中访问您的 CAT。您可以像使用常规 XCH 一样发送和接收新代币。
 
@@ -419,7 +419,7 @@ You now have access to your CAT in the GUI. You can send and receive your new to
 
 ## 创建多铸造 CAT
 
-如果您是视觉学习者，请参阅我们的 [创建多铸造 CAT 视频教程](https://chialisp.com/docs/tutorials/multiple_issuance_CAT "Multiple mint CAT video tutorial")。
+如果您是视觉学习者，请参阅我们的[创建多铸造 CAT 视频教程](https://chialisp.com/docs/tutorials/multiple_issuance_CAT "Multiple mint CAT video tutorial")。
 
 接下来，我们将创建一个能够多次铸造代币的 CAT。这个 CAT 使用了一个委托的 TAIL，它比前一个灵活得多。只要您签署了您指定的谜语哈希，您就可以使用您想要的任何 TAIL 来铸造新令牌。这允许诸如回扣优惠和分布式铸造和停用代币等功能。
 
@@ -427,7 +427,7 @@ You now have access to your CAT in the GUI. You can send and receive your new to
 
 我们将设置这个 CAT 来委托我们之前设置的相同的 TAIL。这意味着在您允许之前，没有其他人可以铸造新的代币。请记住，这只是委托 TAIL 的许多可能实现中的一种。
 
-1. 找一个要铸造的硬币，然后创建并推送一个新的支出包：
+1. 找一个要铸造的硬币，然后创建并推送一个新的花费组合：
 
     a. 如果您不在那里，请更改为“CAT-admin-tool-main”文件夹。
 
@@ -441,9 +441,9 @@ You now have access to your CAT in the GUI. You can send and receive your new to
 
     --select-coin 标志将从您的钱包中选择一个硬币来发行 CAT。输出的最后一行将是“Name: &lt;Coin ID&gt;”。您将使用“&lt;Coin ID&gt;”在下一步中。
 
-    现在你有了一个硬币，你可以创建一个完整的委托 TAIL。在我们的例子中，它委托的 TAIL 将是单一薄荷品种。
+    现在你有了一个硬币，你可以创建一个完整的委托 TAIL。在我们的例子中，它委托的 TAIL 将是单铸造品种。
     
-    f. 运行 `cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x<Coin ID>`。 （请记住，&lt;Coin ID&gt; 之前的 0x 是必需的。）此命令的结果将是一个 <委派谜题>，您将把它作为解决方案的一部分传递给您的主 TAIL。
+    f. 运行 `cdv clsp curry ./reference_tails/genesis_by_coin_id.clsp.hex -a 0x<Coin ID>`。（请记住，&lt;Coin ID&gt; 之前的 0x 是必需的。）此命令的结果将是一个 <委派谜题>，您将把它作为谜底的一部分传递给您的主 TAIL。
 
     g. 使用附加的 --treehash 标志再次运行相同的命令。这会给你&lt;treehash&gt;您刚刚创建的谜语：
     
@@ -465,9 +465,9 @@ You now have access to your CAT in the GUI. You can send and receive your new to
 
 2. 为您的新 CAT 添加一个钱包 ID：
 
-    a. 切换到您的轻钱包 GUI。在几分钟内，您的余额应该会减少您刚刚铸造的魔力数量。但是，它不会出现在您的交易中。该功能尚未实现。
+    a. 切换到您的轻钱包 GUI。在几分钟内，您的余额应该会减少您刚刚铸造的 mojo 数量。但是，它不会出现在您的交易中。该功能尚未实现。
 
-    b. 现在您可以为您的新 CAT 添加钱包 ID。在左上角，单击“+ ADD TOKEN”，然后单击“+自定义”。在名称字段中输入您的 CAT 的名称（可以是任何名称）。对于令牌和资产发行限制字段，粘贴&lt;资产 ID&gt;你从几步前保存。单击添加。
+    b. 现在您可以为您的新 CAT 添加钱包 ID。在左上角，单击“+ ADD TOKEN”，然后单击“+ Custom”。在名称字段中输入您的 CAT 的名称（可以是任何名称）。对于代币和资产发行限制字段，粘贴&lt;资产 ID&gt;你从几步前保存。单击添加。
 
     c. 您现在将被带到您的新 CAT 钱包。余额应显示您选择使用的 XCH mojo 数量除以 1000。这是因为 CAT mojo 默认情况下是 CAT 的千分之一。
     
@@ -475,11 +475,11 @@ You now have access to your CAT in the GUI. You can send and receive your new to
     
     d. 如果您看到总余额为 0，则需要刷新您的钱包。运行 `chia start wallet-only -r`。您现在应该看到正确的余额。这将在未来的版本中修复。
 
-    e. 您的猫的名字可能不会自动显示在您的钱包中。在这种情况下，单击“状态：已同步”旁边的三个点，然后单击“重命名钱包”。您可以将其重命名为其正确的名称。这将在未来的版本中自动完成。
+    e. 您的 CAT 的名字可能不会自动显示在您的钱包中。在这种情况下，单击“Status: Synced”旁边的三个点，然后单击“Rename Wallet”。您可以将其重命名为其正确的名称。这将在未来的版本中自动完成。
 
     就像前面的示例一样，您现在可以在 GUI 中访问您的 CAT。
 
-3. 由于此 CAT 使用委托的 TAIL，您可以通过重新执行本节中的步骤 1 来发行新的铸币。运行“cdv rpc pushtx”命令后，您的CAT钱包中的余额将根据新的铸币数量增加。
+3. 由于此 CAT 使用委托的 TAIL，您可以通过重新执行本节中的步骤 1 来发行新的铸币。运行 “cdv rpc pushtx” 命令后，您的 CAT 钱包中的余额将根据新的铸币数量增加。
 
 <details>
 <summary>原文参考</summary>
@@ -556,7 +556,7 @@ We’ll set up this CAT to delegate the same TAIL we set up previously. What thi
 
 也就是说，向主网发布 CAT 与向测试网发布 CAT 并没有太大区别。你仍然需要一个同步的全节点和一个轻钱包。
 
-一个区别是，对于主网发行，您的完整节点可能基于“主”代码分支。这将节省您同步完整节点的时间。你的轻钱包仍然需要在 `protocol_and_cats_rebased` 分支上运行。
+一个区别是，对于主网发行，您的完整节点可能基于 `main` 代码分支。这将节省您同步完整节点的时间。你的轻钱包仍然需要在 `protocol_and_cats_rebased` 分支上运行。
 
 当您准备好将 CAT 发布到主网时，第一步是运行 `chia configure -t false`，这将指示 Chia 将您的配置切换到主网。
 
@@ -587,7 +587,7 @@ Next, you'll need to generate and protect your keys in a secure manner, which we
 
 在我们引导您安全地生成和保存新的公钥/私钥对的过程之前，请阅读此重要消息。
 
->**警告：** 您将要使用的密钥对将控制这些令牌的铸造和淘汰** forever.** 如果私钥被泄露，攻击者可以铸造新令牌，以及融化任何他们拥有进入常规 XCH。
+>**警告：** 您将要使用的密钥对将控制这些令牌的铸造和淘汰 **forever**。如果私钥被泄露，攻击者可以铸造新令牌，以及融化任何他们拥有进入常规 XCH。
 >
 > 使攻击无效的唯一方法是跟踪非法造币厂（幸运的是，所有这些都在公共分类账上完全可见），发布新的 CAT，然后为新的 CAT 类型提供合法的旧 CAT 交换。
 >
