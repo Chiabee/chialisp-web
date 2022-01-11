@@ -43,7 +43,7 @@ Here's a sample:
 
 * **可组合性。** 一个 lisp 程序本身就是一个列表。此功能允许使用强大的技术，允许您在程序评估期间修改源代码。这样做可以允许“智能硬币”对参与的硬币执行规则，同时仍然允许它利用 Chialisp 必须提供的完整可编程性。使用这样的 lisp 程序可以让您拥有*层智能硬币*，其中“内部”谜语的输出可用于评估“外部”谜语。
 
-* **互操作性。** Chia 生态系统中的每一个智能硬币，无论多么复杂，从根本上来说都是一个被 Chialisp 谜题锁定的硬币。任何谜题的输入将始终是 lisp 数据结构，输出将始终是所有谜题共享的 **条件** 列表。这意味着 Chia 中的所有内容都可以与其他所有内容互操作。任何智能代币都应该能够与任何其他智能代币进行交互或通信，无论这两种代币是否是专门为此设计的。
+* **互操作性。** Chia 生态系统中的每一个智能硬币，无论多么复杂，从根本上来说都是一个被 Chialisp 谜语锁定的硬币。任何谜语的输入将始终是 lisp 数据结构，输出将始终是所有谜语共享的**条件**列表。这意味着 Chia 中的所有内容都可以与其他所有内容互操作。任何智能代币都应该能够与任何其他智能代币进行交互或通信，无论这两种代币是否是专门为此设计的。
 
 <details>
 <summary>原文参考</summary>
@@ -69,7 +69,7 @@ Any smart coin should be able to interact or communicate with any other smart co
 
 ## Chia 资产代币 (CAT)
 
-我们集成到 chia-blockchain 中的第一个 Chialisp 智能交易是 [CATs](https://chialisp.com/docs/puzzles/cats)（以前称为*彩色硬币*）。 CAT 允许您在 Chia 区块链上创建完全由您控制的代币。这允许您在 Chia 区块链上发行未经您许可他人无法创建或销毁的资产。这可用于稳定币、股票发行、投票股份或您能想到的任何其他事物。阅读有关 [CAT](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html) 命名法的更多信息。
+我们集成到 chia-blockchain 中的第一个 Chialisp 智能交易是 [CATs](https://chialisp.com/docs/puzzles/cats)（以前称为*彩色硬币*）。CAT 允许您在 Chia 区块链上创建完全由您控制的代币。这允许您在 Chia 区块链上发行未经您许可他人无法创建或销毁的资产。这可用于稳定币、股票发行、投票股份或您能想到的任何其他事物。阅读有关 [CAT](https://www.chia.net/2021/09/23/chia-token-standard-naming.en.html) 命名法的更多信息。
 
 <details>
 <summary>原文参考</summary>
@@ -82,7 +82,7 @@ The first Chialisp smart transaction that we integrated into chia-blockchain wer
 
 ## 单例硬币
 
-Chialisp 的另一个引人入胜的应用是创建**单例硬币**。单例硬币是一种可以验证只有一个的硬币。当您可以验证只有一个硬币时，您就可以启用一些有趣的功能。Chia 网络池协议使用它来验证您已将您的地块提交给一个池，并且没有将它们承诺给任何其他池。您还可以制作 NFT、去中心化身份以及任何其他可以使用独特硬币的东西。
+Chialisp 的另一个引人入胜的应用是创建**单例硬币**。单例硬币是一种可以验证只有一个的硬币。当您可以验证只有一个硬币时，您就可以启用一些有趣的功能。Chia 网络池协议使用它来验证您已将您的地块提交给一个矿池，并且没有将它们承诺给任何其他矿池。您还可以制作 NFT、去中心化身份以及任何其他可以使用独特硬币的东西。
 
 <details>
 <summary>原文参考</summary>
@@ -117,7 +117,7 @@ The natural interoperability that Chialisp provides is also relevant because it 
 
 - [Chialisp](https://www.chia.net/2019/11/27/chialisp.en.html) 的介绍性帖子
 - 介绍我们的[彩色币 MVP](https://www.chia.net/2020/04/29/coloured-coins-launch.en.html)
-- [Chia 在去中心化金融领域](https://www.chia.net/2021/07/13/a-vision-for-defi-in-chia.en.html) 的愿景
+- [Chia 在去中心化金融领域](https://www.chia.net/2021/07/13/a-vision-for-defi-in-chia.en.html)的愿景
 
 <details>
 <summary>原文参考</summary>
