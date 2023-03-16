@@ -1209,6 +1209,7 @@ One more thing -- we take the cost of running the program inside the `softfork` 
 一些运算符有一个特殊的值，当它们以零参数调用时会返回该值。该值是该函数的标识。例如，调用带有零个参数的运算符 `+` 将返回 `0`：
 
 `(+)` => `0`
+
 Operator | Identity
 ---|---
 `+`| 0
