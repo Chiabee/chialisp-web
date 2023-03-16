@@ -183,7 +183,7 @@ This can be done by having the result of an evaluation be a list of **conditions
 
 * **AGG_SIG_UNSAFE - [49] - (49 pubkey message)**：仅当附加的聚合签名包含来自给定消息的给定公钥的签名时，此支出才有效。这被标记为不安全，因为如果您对一条消息进行一次签名，则您拥有的任何其他需要该签名的硬币也可能会被解锁。由于硬币 ID 引入的自然熵，最好仅使用 AGG_SIG_ME。
 * **AGG_SIG_ME - [50] - (50 pubkey message)**：仅当附加的聚合签名包含来自该消息的指定公钥的签名与硬币的 ID 和网络的创世挑战连接时，此支出才有效。
-* **CREATE_COIN - [51] - (51谜语哈希金额)**：如果此支出有效，则使用给定的谜语哈希和金额创建一个新硬币。
+* **CREATE_COIN - [51] - (51 puzzlehash amount)**：如果此支出有效，则使用给定的谜语哈希和金额创建一个新硬币。
 * **RESERVE_FEE - [52] - (52 amount)**：仅当本次交易中存在大于或等于*金额*的未使用价值（明确用作费用）时，此支出才有效。
 * **CREATE_COIN_ANNOUNCEMENT - [60] - (60 message)**：如果此支出有效，则会创建一个临时公告，其 ID 取决于创建它的代币。其他币然后可以断言存在用于块内币间通信的公告。
 * **ASSERT_COIN_ANNOUNCEMENT - [61] - (61 noticeID)**：只有在此区块中有与announcementID 匹配的公告时，此支出才有效。
@@ -193,9 +193,9 @@ announcementID 是宣布消息的哈希值与宣布它的硬币的硬币 ID 连�
 announcementID 是宣布的消息与宣布它的硬币的谜语哈希连接`announcementID == sha256(puzzle_hash + message)`。
 * **ASSERT_MY_COIN_ID - [70] - (70 coinID)**：仅当提供的硬币 ID 与包含此谜语的硬币 ID 完全相同时，此支出才有效。
 * **ASSERT_MY_PARENT_ID - [71] - (71 parentID)**：只有当提供的父代币信息与包含此谜语的代币的父代币信息完全相同时，此支出才有效。
-* **ASSERT_MY_PUZZLEHASH - [72] - (72puzzlehash)**：仅当提供的谜语哈希与包含此谜语的硬币的谜语哈希完全相同时，此支出才有效。
+* **ASSERT_MY_PUZZLEHASH - [72] - (72 puzzlehash)**：仅当提供的谜语哈希与包含此谜语的硬币的谜语哈希完全相同时，此支出才有效。
 * **ASSERT_MY_AMOUNT - [73] - (73 amount)**：仅当显示的金额与包含此谜语的硬币的数量完全相同时，此支出才有效。
-* **ASSERT_SECONDS_RELATIVE - [80] -（80 秒）**：此支出仅在自该硬币创建后经过给定时间后才有效。硬币的创建时间或“生日”由前一个块的时间戳定义，*而不是*创建它的实际块。类似地，在评估这些时间锁时，前一个块的时间戳用作当前时间。
+* **ASSERT_SECONDS_RELATIVE - [80] -（80 seconds）**：此支出仅在自该硬币创建后经过给定时间后才有效。硬币的创建时间或“生日”由前一个块的时间戳定义，*而不是*创建它的实际块。类似地，在评估这些时间锁时，前一个块的时间戳用作当前时间。
 * **ASSERT_SECONDS_ABSOLUTE - [81] - (81 time)**：仅当此区块上的时间戳大于指定的时间戳时，此支出才有效。同样，硬币的生日和当前时间由前一个块的时间戳定义。
 * **ASSERT_HEIGHT_RELATIVE - [82] - (82 block_age)**：此支出仅在自该硬币创建以来经过指定数量的区块时才有效。
 * **ASSERT_HEIGHT_ABSOLUTE - [83] - (83 block_height)**：此支出仅在达到给定的 block_height 时才有效。
