@@ -26,7 +26,7 @@ Follow the instructions in the README to install it.
 
 ## CLVM 值
 
-CLVM 由 [cons 框](https://en.wikipedia.org/wiki/Cons) 和[原子](https://www.gnu.org/software/emacs/manual/html_node/eintr/Lisp-Atoms.html#:~:text=Technically%20speaking%2C%20a%20list%20in,nothing%20in%20it%20at%20all.)构建而成。这些被称为 CLVM 对象。cons 框是一对 CLVM 对象。 cons 框中的项目可以是原子或另一个 cons 框。
+CLVM 由 [cons 结构](https://en.wikipedia.org/wiki/Cons) 和[原子](https://www.gnu.org/software/emacs/manual/html_node/eintr/Lisp-Atoms.html#:~:text=Technically%20speaking%2C%20a%20list%20in,nothing%20in%20it%20at%20all.)构建而成。这些被称为 CLVM 对象。cons 结构是一对 CLVM 对象。 cons 结构中的项目可以是原子或另一个 cons 结构。
 
 ### 原子
 
@@ -38,9 +38,9 @@ CLVM 中的所有原子都是不可变的。所有对原子执行计算的运算
 
 将原子解释为整数时，重要的是要记住它们是有符号的。为了表示一个正整数，最高有效位可能不被设置。因此，正整数前面有一个 0 字节，以防设置下一个字节中的最高有效位。
 
-### Cons 框
+### Cons 结构
 
-Cons 框表示为一个括号，其中两个元素以 `.` 分隔。例如：
+Cons 结构表示为一个括号，其中两个元素以 `.` 分隔。例如：
 
 ```chialisp
 (200 . "hello")
@@ -48,13 +48,13 @@ Cons 框表示为一个括号，其中两个元素以 `.` 分隔。例如：
 ("hello" . ("world" . "!!!"))
 ```
 
-是合法的 cons 框，但以下不是。
+是合法的 cons 结构，但以下不是。
 
 ```chialisp
 (200 . 300 . 400)
 ```
 
-cons 框总是有两个元素。但是，我们可以将 cons 框链接在一起以构建列表。
+cons 结构总是有两个元素。但是，我们可以将 cons 结构链接在一起以构建列表。
 
 <details>
 <summary>原文参考</summary>
@@ -96,7 +96,7 @@ However, we can chain cons boxes together to construct lists.
 
 ## Lists
 
-list 用括号括起来，list 中的每个条目都是单行的，值之间没有句点。列表比 cons 框更常用，因为它们更通用。
+list 用括号括起来，list 中的每个条目都是单行的，值之间没有句点。列表比 cons 结构更常用，因为它们更通用。
 
 ```chialisp
 (200 300 "hello" "world")
@@ -108,7 +108,7 @@ list 用括号括起来，list 中的每个条目都是单行的，值之间没�
 ("hello" ("nested" "list") ("world"))
 ```
 
-请记住，list 是以空原子 () 结尾的连续 cons 框的表示。以下表达式是相等的：
+请记住，list 是以空原子 () 结尾的连续 cons 结构的表示。以下表达式是相等的：
 
 ```chialisp
 (200 . (300 . (400 . ())))
@@ -144,7 +144,7 @@ The following expressions are equal:
 
 ## 引用
 
-要将原子解释为值而不是程序，需要用 `q` 引用它。引用的值形成一个 cons 框，其中第一项是 `q` 运算符。例如，这个程序只是值 `100`：
+要将原子解释为值而不是程序，需要用 `q` 引用它。引用的值形成一个 cons 结构，其中第一项是 `q` 运算符。例如，这个程序只是值 `100`：
 
 ```chialisp
 (q . 100)
@@ -503,7 +503,7 @@ $ brun '(+ (q . 70) ())'
 </details>
 
 
-## 流量控制
+## 流程控制
 
 `i` 操作符采用 `(i A B C)` 的形式，并作为一个 if 语句，如果 `A` 为真，则求值为 `B`，否则求值为 `C`。
 
