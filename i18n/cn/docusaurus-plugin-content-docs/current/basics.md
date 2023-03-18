@@ -173,7 +173,7 @@ list 是括号内的一个或多个元素的任何以空格分隔的有序组。
 
 列表甚至可以包含其他列表，例如 `("list" "list" ("sublist" "sublist" ("sub-sublist")) "list")`。 
 
-程序是可以使用 CLVM 评估的列表子集。**一个程序实际上只是一个用[波兰语表示](https://en.wikipedia.org/wiki/Polish_notation)的列表**。
+程序是可以使用 CLVM 评估的列表子集。**一个程序实际上只是一个用[波兰表示法](https://en.wikipedia.org/wiki/Polish_notation)的列表**。
 
 **为了使列表成为有效程序：**
 

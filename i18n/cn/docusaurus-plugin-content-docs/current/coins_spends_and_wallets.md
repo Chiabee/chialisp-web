@@ -105,7 +105,7 @@ You cannot change a coin's puzzle or amount, you can only spend a coin.
 要花费一个币，您需要 3 条信息（以及可选的第 4 条信息）。
 
 1. 币的 ID
-2. 币谜语的完整来源
+2. 币谜语的完整源代码
 3. 币谜语的解法
 4. （可选）一组签名组合在一起，称为聚合签名
 
